@@ -22,3 +22,12 @@ Implementation Goals:
     + spawn all of the traffic signals at the intersections when initialized
     + spawn vehicles at given rates/intervals on the roads at the edges of the screen
     
+Implementation Plan:
+  1. Implement and test road drawer
+  2. Create vehicle and test road following, vehicle despawning, and intersection crossing
+  3. Create traffic signal and test light transitions and timers
+  4. Test vehicle interactions (collision avoidance) and traffic light reaction
+  5. Test traffic signal detection and variables
+  6. Test traffic signal phase coordination
+  7. Create spawner and test road initialization
+  8. Test vehicle spawning at intervals and traffic signal system initialization
