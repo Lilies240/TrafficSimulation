@@ -1,0 +1,36 @@
+[gd_scene load_steps=3 format=3 uid="uid://birbeoxe2pwja"]
+
+[ext_resource type="PackedScene" uid="uid://cpuk2e3u5ts7k" path="res://Prefabs/road_drawer.tscn" id="1_af2ed"]
+
+[sub_resource type="Curve2D" id="Curve2D_hkfpx"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 154, 277, -127.136, -23.3082, 127.136, 23.3082, 357, 468, -233.082, -44.4974, 233.082, 44.4974, 645, 496, -116.541, 63.5678, 116.541, -63.5678, 938, 343, 84.757, 38.1407, -84.757, -38.1407, 978, 55, 0, 0, 0, 0, 724, 23, -8.4757, -141.968, 8.4757, 141.968, 563, 161, 0, 0, 0, 0, 671, 271)
+}
+point_count = 8
+
+[node name="TwoLaneRoac" type="Node2D"]
+
+[node name="BaseRoad" parent="." node_paths=PackedStringArray("path2d") instance=ExtResource("1_af2ed")]
+path2d = NodePath("../Path2D")
+
+[node name="YellowLines" parent="." node_paths=PackedStringArray("path2d") instance=ExtResource("1_af2ed")]
+visible = false
+path2d = NodePath("../Path2D")
+line_width = 15.0
+line_color = Color(0.984314, 0.686275, 0.247059, 1)
+
+[node name="CenterDivider" parent="." node_paths=PackedStringArray("path2d") instance=ExtResource("1_af2ed")]
+visible = false
+path2d = NodePath("../Path2D")
+line_width = 3.0
+
+[node name="WhiteDashes" parent="." node_paths=PackedStringArray("path2d") instance=ExtResource("1_af2ed")]
+path2d = NodePath("../Path2D")
+line_width = 10.0
+line_color = Color(1, 1, 1, 1)
+line_type = 1
+dash_length = 10
+gap_length = 3
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_hkfpx")
