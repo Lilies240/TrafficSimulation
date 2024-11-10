@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://cywwg44v5cmjl"]
+
+[ext_resource type="Script" path="res://Scripts/Vehicle.gd" id="1_br5e0"]
+[ext_resource type="Texture2D" uid="uid://dgx26xnpsfree" path="res://Resources/midsize.png" id="2_vs20x"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8f4n1"]
+radius = 90.0
+height = 494.0
+
+[node name="Midsize" type="PathFollow2D"]
+script = ExtResource("1_br5e0")
+
+[node name="CharacterBody" type="CharacterBody2D" parent="."]
+rotation = -1.5708
+motion_mode = 1
+
+[node name="MidsizeCollider" type="CollisionShape2D" parent="CharacterBody"]
+rotation = -3.14159
+shape = SubResource("CapsuleShape2D_8f4n1")
+
+[node name="MidsizeSprite" type="Sprite2D" parent="CharacterBody"]
+rotation = 1.5708
+scale = Vector2(0.495, 0.399)
+texture = ExtResource("2_vs20x")

@@ -1,0 +1,641 @@
+[gd_scene load_steps=58 format=3 uid="uid://c2igiwimyx0ws"]
+
+[ext_resource type="Script" path="res://Scripts/Manager.gd" id="1_tdvwb"]
+[ext_resource type="PackedScene" uid="uid://dm4nq1msj6e00" path="res://Prefabs/vehicle.tscn" id="2_yofyd"]
+[ext_resource type="PackedScene" uid="uid://6gveku188lpk" path="res://Prefabs/compact.tscn" id="3_h4dsy"]
+[ext_resource type="PackedScene" uid="uid://cywwg44v5cmjl" path="res://Prefabs/midsize.tscn" id="4_jook1"]
+[ext_resource type="PackedScene" uid="uid://dbm7d45xxgtns" path="res://Prefabs/suv.tscn" id="5_eihru"]
+[ext_resource type="PackedScene" uid="uid://bj6cai8eqhlp0" path="res://Prefabs/truck.tscn" id="6_xc338"]
+[ext_resource type="Script" path="res://Scripts/SpawnRequest.gd" id="7_1o80a"]
+[ext_resource type="PackedScene" uid="uid://cpuk2e3u5ts7k" path="res://Prefabs/road_drawer.tscn" id="8_0cbw0"]
+[ext_resource type="Texture2D" uid="uid://cuqenu2smf7qi" path="res://Resources/TurnOnly.png" id="9_je76d"]
+[ext_resource type="Texture2D" uid="uid://odskwoushfyd" path="res://Resources/TwoDirection.png" id="10_0a5jm"]
+[ext_resource type="PackedScene" uid="uid://dqde08ap6rrio" path="res://Prefabs/intersection.tscn" id="10_a6i7i"]
+[ext_resource type="Texture2D" uid="uid://3u4ah4xo833q" path="res://Resources/ForwardOnly.png" id="11_50dvg"]
+
+[sub_resource type="Resource" id="Resource_qnn64"]
+script = ExtResource("7_1o80a")
+vehicleType = 3
+spawnPaths = Array[NodePath]([])
+spawnTime = 0.0
+
+[sub_resource type="Resource" id="Resource_yeyvm"]
+script = ExtResource("7_1o80a")
+vehicleType = 3
+spawnPaths = Array[NodePath]([])
+spawnTime = 0.0
+
+[sub_resource type="Resource" id="Resource_uypjo"]
+script = ExtResource("7_1o80a")
+vehicleType = 3
+spawnPaths = Array[NodePath]([])
+spawnTime = 0.0
+
+[sub_resource type="Resource" id="Resource_nbb1w"]
+script = ExtResource("7_1o80a")
+vehicleType = 3
+spawnPaths = Array[NodePath]([])
+spawnTime = 0.0
+
+[sub_resource type="Resource" id="Resource_8p8i8"]
+script = ExtResource("7_1o80a")
+vehicleType = 3
+spawnPaths = Array[NodePath]([])
+spawnTime = 0.0
+
+[sub_resource type="Resource" id="Resource_mou8m"]
+script = ExtResource("7_1o80a")
+vehicleType = 3
+spawnPaths = Array[NodePath]([])
+spawnTime = 0.0
+
+[sub_resource type="Resource" id="Resource_2bdyy"]
+script = ExtResource("7_1o80a")
+vehicleType = 3
+spawnPaths = Array[NodePath]([])
+spawnTime = 0.0
+
+[sub_resource type="Resource" id="Resource_3mpn2"]
+script = ExtResource("7_1o80a")
+vehicleType = 3
+spawnPaths = Array[NodePath]([])
+spawnTime = 0.0
+
+[sub_resource type="Resource" id="Resource_askbe"]
+script = ExtResource("7_1o80a")
+vehicleType = 3
+spawnPaths = Array[NodePath]([])
+spawnTime = 0.0
+
+[sub_resource type="Resource" id="Resource_16iwg"]
+script = ExtResource("7_1o80a")
+vehicleType = 3
+spawnPaths = Array[NodePath]([])
+spawnTime = 0.0
+
+[sub_resource type="Resource" id="Resource_tjls2"]
+script = ExtResource("7_1o80a")
+vehicleType = 3
+spawnPaths = Array[NodePath]([])
+spawnTime = 0.0
+
+[sub_resource type="Resource" id="Resource_d4icx"]
+script = ExtResource("7_1o80a")
+vehicleType = 3
+spawnPaths = Array[NodePath]([])
+spawnTime = 0.0
+
+[sub_resource type="Resource" id="Resource_44eun"]
+script = ExtResource("7_1o80a")
+vehicleType = 1
+spawnPaths = Array[NodePath]([])
+spawnTime = 0.0
+
+[sub_resource type="Resource" id="Resource_rdsbh"]
+script = ExtResource("7_1o80a")
+vehicleType = 2
+spawnPaths = Array[NodePath]([])
+spawnTime = 0.0
+
+[sub_resource type="Resource" id="Resource_qm7nd"]
+script = ExtResource("7_1o80a")
+vehicleType = 3
+spawnPaths = Array[NodePath]([])
+spawnTime = 0.0
+
+[sub_resource type="Resource" id="Resource_k767t"]
+script = ExtResource("7_1o80a")
+vehicleType = 1
+spawnPaths = Array[NodePath]([])
+spawnTime = 0.0
+
+[sub_resource type="Resource" id="Resource_s5pvm"]
+script = ExtResource("7_1o80a")
+vehicleType = 1
+spawnPaths = Array[NodePath]([])
+spawnTime = 0.0
+
+[sub_resource type="Resource" id="Resource_opd1k"]
+script = ExtResource("7_1o80a")
+vehicleType = 2
+spawnPaths = Array[NodePath]([])
+spawnTime = 0.0
+
+[sub_resource type="Resource" id="Resource_fduvx"]
+script = ExtResource("7_1o80a")
+vehicleType = 3
+spawnPaths = Array[NodePath]([])
+spawnTime = 0.0
+
+[sub_resource type="Resource" id="Resource_lkb72"]
+script = ExtResource("7_1o80a")
+vehicleType = 3
+spawnPaths = Array[NodePath]([])
+spawnTime = 0.0
+
+[sub_resource type="Curve2D" id="Curve2D_ogvtp"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 2700, -1650, 0, 0, 0, 0, 2700, 3231)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_vfhp3"]
+_data = {
+"points": PackedVector2Array(-227.743, -239.729, 0, 0, 2750, 2000, -227.743, -239.729, 227.743, 239.729, 2889, 2908, 0, 0, 0, 0, 3900, 3350)
+}
+point_count = 3
+
+[sub_resource type="Curve2D" id="Curve2D_v07xf"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 2450, 2000, 167.81, -131.851, -167.81, 131.851, 2266, 2440, 0, 0, 0, 0, 1800, 2650)
+}
+point_count = 3
+
+[sub_resource type="Curve2D" id="Curve2D_3cywi"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 8900, 4000, 470.902, 336.359, -470.902, -336.359, 8728, 3056, 0, 0, 0, 0, 7800, 2950)
+}
+point_count = 3
+
+[sub_resource type="Curve2D" id="Curve2D_yfqa2"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 9200, 4000, -201.815, 174.906, 201.815, -174.906, 9361, 3433, 0, 0, 0, 0, 10000, 3350)
+}
+point_count = 3
+
+[sub_resource type="Curve2D" id="Curve2D_axt4m"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -2100, 3050, 0, 0, 0, 0, 1800, 3050)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_m41wc"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -2100, 3350, 0, 0, 0, 0, 1800, 3350)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_7b7eb"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 3900, 3050, 0, 0, 0, 0, 7800, 3050)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_d35hm"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 3900, 3350, 0, 0, 0, 0, 7800, 3350)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_7bygs"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 10000, 3050, 0, 0, 0, 0, 15000, 3050)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_75fom"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 10000, 3350, 0, 0, 0, 0, 15000, 3350)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_i7lub"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1800, 2650, 0, 0, 0, 0, -2100, 2650)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_cvats"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1800, 2950, 0, 0, 0, 0, -2100, 2950)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_vohhl"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 7800, 2650, 0, 0, 0, 0, 3900, 2650)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_rtu4s"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 7800, 2950, 0, 0, 0, 0, 3900, 2950)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_y3aoa"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 15000, 2650, 0, 0, 0, 0, 10000, 2650)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_4cg1w"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 15000, 2950, 0, 0, 0, 0, 10000, 2950)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_xndsl"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 2450, -2500, 0, 0, 0, 0, 2450, 2000)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_rqv63"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 2750, -2500, 0, 0, 0, 0, 2750, 2000)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_gl2pq"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 8500, 4000, 0, 0, 0, 0, 8500, 8500)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_s1pu8"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 8800, 4000, 0, 0, 0, 0, 8800, 8500)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_hkhjb"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 2850, 2000, 0, 0, 0, 0, 2850, -2500)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_50jcr"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 3150, 2000, 0, 0, 0, 0, 3150, -2500)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_o4fk7"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 8900, 8500, 0, 0, 0, 0, 8900, 4000)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_pjsw1"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 9200, 8500, 0, 0, 0, 0, 9200, 4000)
+}
+point_count = 2
+
+[node name="TestScene" type="Node2D"]
+script = ExtResource("1_tdvwb")
+vehicle_scene = ExtResource("2_yofyd")
+compact_scene = ExtResource("3_h4dsy")
+midsize_scene = ExtResource("4_jook1")
+suv_scene = ExtResource("5_eihru")
+truck_scene = ExtResource("6_xc338")
+spawnQueue = Array[ExtResource("7_1o80a")]([SubResource("Resource_qnn64"), SubResource("Resource_yeyvm"), SubResource("Resource_uypjo"), SubResource("Resource_nbb1w"), SubResource("Resource_8p8i8"), SubResource("Resource_mou8m"), SubResource("Resource_2bdyy"), SubResource("Resource_3mpn2"), SubResource("Resource_askbe"), SubResource("Resource_16iwg"), SubResource("Resource_tjls2"), SubResource("Resource_d4icx"), SubResource("Resource_44eun"), SubResource("Resource_rdsbh"), SubResource("Resource_qm7nd"), SubResource("Resource_k767t"), SubResource("Resource_s5pvm"), SubResource("Resource_opd1k"), SubResource("Resource_fduvx"), SubResource("Resource_lkb72")])
+
+[node name="FourLaneRoad" parent="." node_paths=PackedStringArray("path2d") instance=ExtResource("8_0cbw0")]
+position = Vector2(122, -1000)
+path2d = NodePath("Path2D")
+line_width = 1200.0
+
+[node name="DashedLines" parent="FourLaneRoad" node_paths=PackedStringArray("path2d") instance=ExtResource("8_0cbw0")]
+path2d = NodePath("../Path2D")
+line_width = 600.0
+line_color = Color(1, 1, 1, 1)
+line_type = 1
+dash_length = 30
+gap_length = 60
+
+[node name="DashedDivider" parent="FourLaneRoad" node_paths=PackedStringArray("path2d") instance=ExtResource("8_0cbw0")]
+path2d = NodePath("../Path2D")
+line_width = 580.0
+
+[node name="YellowLines" parent="FourLaneRoad" node_paths=PackedStringArray("path2d") instance=ExtResource("8_0cbw0")]
+path2d = NodePath("../Path2D")
+line_width = 20.0
+line_color = Color(0.984314, 0.686275, 0.247059, 1)
+dash_length = 30
+gap_length = 60
+
+[node name="YellowDivider" parent="FourLaneRoad" node_paths=PackedStringArray("path2d") instance=ExtResource("8_0cbw0")]
+path2d = NodePath("../Path2D")
+line_width = 10.0
+
+[node name="Path2D" type="Path2D" parent="FourLaneRoad"]
+curve = SubResource("Curve2D_ogvtp")
+
+[node name="Sprite2D" type="Sprite2D" parent="FourLaneRoad"]
+position = Vector2(2250, 2896)
+rotation = 3.14159
+scale = Vector2(0.230457, 0.832209)
+texture = ExtResource("9_je76d")
+
+[node name="Sprite2D2" type="Sprite2D" parent="FourLaneRoad"]
+position = Vector2(2550, 2896)
+rotation = 3.14159
+scale = Vector2(-0.23, 0.832)
+texture = ExtResource("9_je76d")
+
+[node name="FourLaneRoad2" parent="." node_paths=PackedStringArray("path2d") instance=ExtResource("8_0cbw0")]
+position = Vector2(11563, 7090)
+rotation = 3.14159
+path2d = NodePath("../FourLaneRoad/Path2D")
+line_width = 1200.0
+
+[node name="DashedLines" parent="FourLaneRoad2" node_paths=PackedStringArray("path2d") instance=ExtResource("8_0cbw0")]
+path2d = NodePath("../../FourLaneRoad/Path2D")
+line_width = 600.0
+line_color = Color(1, 1, 1, 1)
+line_type = 1
+dash_length = 30
+gap_length = 60
+
+[node name="DashedDivider" parent="FourLaneRoad2" node_paths=PackedStringArray("path2d") instance=ExtResource("8_0cbw0")]
+path2d = NodePath("../../FourLaneRoad/Path2D")
+line_width = 580.0
+
+[node name="YellowLines" parent="FourLaneRoad2" node_paths=PackedStringArray("path2d") instance=ExtResource("8_0cbw0")]
+path2d = NodePath("../../FourLaneRoad/Path2D")
+line_width = 20.0
+line_color = Color(0.984314, 0.686275, 0.247059, 1)
+dash_length = 30
+gap_length = 60
+
+[node name="YellowDivider" parent="FourLaneRoad2" node_paths=PackedStringArray("path2d") instance=ExtResource("8_0cbw0")]
+path2d = NodePath("../../FourLaneRoad/Path2D")
+line_width = 10.0
+
+[node name="Path2D" type="Path2D" parent="FourLaneRoad2"]
+curve = SubResource("Curve2D_ogvtp")
+
+[node name="Sprite2D" type="Sprite2D" parent="FourLaneRoad2"]
+position = Vector2(2250, 2896)
+rotation = 3.14159
+scale = Vector2(0.230457, 0.832209)
+texture = ExtResource("9_je76d")
+
+[node name="Sprite2D2" type="Sprite2D" parent="FourLaneRoad2"]
+position = Vector2(2550, 2896)
+rotation = 3.14159
+scale = Vector2(-0.23, 0.832)
+texture = ExtResource("9_je76d")
+
+[node name="FourLaneRoad3" parent="." node_paths=PackedStringArray("path2d") instance=ExtResource("8_0cbw0")]
+position = Vector2(6954, 300)
+rotation = 1.5708
+path2d = NodePath("../FourLaneRoad/Path2D")
+line_width = 1200.0
+
+[node name="DashedLines" parent="FourLaneRoad3" node_paths=PackedStringArray("path2d") instance=ExtResource("8_0cbw0")]
+path2d = NodePath("../../FourLaneRoad/Path2D")
+line_width = 600.0
+line_color = Color(1, 1, 1, 1)
+line_type = 1
+dash_length = 30
+gap_length = 60
+
+[node name="DashedDivider" parent="FourLaneRoad3" node_paths=PackedStringArray("path2d") instance=ExtResource("8_0cbw0")]
+path2d = NodePath("../../FourLaneRoad/Path2D")
+line_width = 580.0
+
+[node name="YellowLines" parent="FourLaneRoad3" node_paths=PackedStringArray("path2d") instance=ExtResource("8_0cbw0")]
+path2d = NodePath("../../FourLaneRoad/Path2D")
+line_width = 20.0
+line_color = Color(0.984314, 0.686275, 0.247059, 1)
+dash_length = 30
+gap_length = 60
+
+[node name="YellowDivider" parent="FourLaneRoad3" node_paths=PackedStringArray("path2d") instance=ExtResource("8_0cbw0")]
+path2d = NodePath("../../FourLaneRoad/Path2D")
+line_width = 10.0
+
+[node name="Path2D" type="Path2D" parent="FourLaneRoad3"]
+curve = SubResource("Curve2D_ogvtp")
+
+[node name="Sprite2D" type="Sprite2D" parent="FourLaneRoad3"]
+position = Vector2(2250, 2896)
+rotation = 3.14159
+scale = Vector2(-0.23, 0.832)
+texture = ExtResource("10_0a5jm")
+
+[node name="Sprite2D2" type="Sprite2D" parent="FourLaneRoad3"]
+position = Vector2(2550, 2896)
+rotation = 3.14159
+scale = Vector2(-0.23, 0.832)
+texture = ExtResource("11_50dvg")
+
+[node name="Sprite2D3" type="Sprite2D" parent="FourLaneRoad3"]
+position = Vector2(2878.17, -659.64)
+scale = Vector2(0.23, 0.832)
+texture = ExtResource("11_50dvg")
+
+[node name="Sprite2D4" type="Sprite2D" parent="FourLaneRoad3"]
+position = Vector2(3178.17, -659.64)
+scale = Vector2(-0.23, 0.832)
+texture = ExtResource("10_0a5jm")
+
+[node name="FourLaneRoad5" parent="." node_paths=PackedStringArray("path2d") instance=ExtResource("8_0cbw0")]
+position = Vector2(953, 300)
+rotation = 1.5708
+path2d = NodePath("../FourLaneRoad/Path2D")
+line_width = 1200.0
+
+[node name="DashedLines" parent="FourLaneRoad5" node_paths=PackedStringArray("path2d") instance=ExtResource("8_0cbw0")]
+path2d = NodePath("../../FourLaneRoad/Path2D")
+line_width = 600.0
+line_color = Color(1, 1, 1, 1)
+line_type = 1
+dash_length = 30
+gap_length = 60
+
+[node name="DashedDivider" parent="FourLaneRoad5" node_paths=PackedStringArray("path2d") instance=ExtResource("8_0cbw0")]
+path2d = NodePath("../../FourLaneRoad/Path2D")
+line_width = 580.0
+
+[node name="YellowLines" parent="FourLaneRoad5" node_paths=PackedStringArray("path2d") instance=ExtResource("8_0cbw0")]
+path2d = NodePath("../../FourLaneRoad/Path2D")
+line_width = 20.0
+line_color = Color(0.984314, 0.686275, 0.247059, 1)
+dash_length = 30
+gap_length = 60
+
+[node name="YellowDivider" parent="FourLaneRoad5" node_paths=PackedStringArray("path2d") instance=ExtResource("8_0cbw0")]
+path2d = NodePath("../../FourLaneRoad/Path2D")
+line_width = 10.0
+
+[node name="Path2D" type="Path2D" parent="FourLaneRoad5"]
+curve = SubResource("Curve2D_ogvtp")
+
+[node name="Sprite2D" type="Sprite2D" parent="FourLaneRoad5"]
+position = Vector2(2250, 2896)
+rotation = 3.14159
+scale = Vector2(-0.23, 0.832)
+texture = ExtResource("10_0a5jm")
+
+[node name="Sprite2D2" type="Sprite2D" parent="FourLaneRoad5"]
+position = Vector2(2550, 2896)
+rotation = 3.14159
+scale = Vector2(-0.23, 0.832)
+texture = ExtResource("11_50dvg")
+
+[node name="Sprite2D3" type="Sprite2D" parent="FourLaneRoad5"]
+position = Vector2(2878.17, -659.64)
+scale = Vector2(0.23, 0.832)
+texture = ExtResource("10_0a5jm")
+
+[node name="Sprite2D4" type="Sprite2D" parent="FourLaneRoad5"]
+position = Vector2(3178.17, -659.64)
+scale = Vector2(0.23, 0.832)
+texture = ExtResource("11_50dvg")
+
+[node name="FourLaneRoad4" parent="." node_paths=PackedStringArray("path2d") instance=ExtResource("8_0cbw0")]
+position = Vector2(12988, 300)
+rotation = 1.5708
+path2d = NodePath("../FourLaneRoad/Path2D")
+line_width = 1200.0
+
+[node name="DashedLines" parent="FourLaneRoad4" node_paths=PackedStringArray("path2d") instance=ExtResource("8_0cbw0")]
+path2d = NodePath("../../FourLaneRoad/Path2D")
+line_width = 600.0
+line_color = Color(1, 1, 1, 1)
+line_type = 1
+dash_length = 30
+gap_length = 60
+
+[node name="DashedDivider" parent="FourLaneRoad4" node_paths=PackedStringArray("path2d") instance=ExtResource("8_0cbw0")]
+path2d = NodePath("../../FourLaneRoad/Path2D")
+line_width = 580.0
+
+[node name="YellowLines" parent="FourLaneRoad4" node_paths=PackedStringArray("path2d") instance=ExtResource("8_0cbw0")]
+path2d = NodePath("../../FourLaneRoad/Path2D")
+line_width = 20.0
+line_color = Color(0.984314, 0.686275, 0.247059, 1)
+dash_length = 30
+gap_length = 60
+
+[node name="YellowDivider" parent="FourLaneRoad4" node_paths=PackedStringArray("path2d") instance=ExtResource("8_0cbw0")]
+path2d = NodePath("../../FourLaneRoad/Path2D")
+line_width = 10.0
+
+[node name="Path2D" type="Path2D" parent="FourLaneRoad4"]
+curve = SubResource("Curve2D_ogvtp")
+
+[node name="Sprite2D" type="Sprite2D" parent="FourLaneRoad4"]
+position = Vector2(2250, 2896)
+rotation = 3.14159
+scale = Vector2(-0.23, 0.832)
+texture = ExtResource("11_50dvg")
+
+[node name="Sprite2D2" type="Sprite2D" parent="FourLaneRoad4"]
+position = Vector2(2550, 2896)
+rotation = 3.14159
+scale = Vector2(0.23, 0.832)
+texture = ExtResource("10_0a5jm")
+
+[node name="Intersection" parent="." instance=ExtResource("10_a6i7i")]
+position = Vector2(2222, 2400)
+scale = Vector2(12, 12)
+
+[node name="ColorRect" parent="Intersection" index="0"]
+offset_left = -25.0
+offset_right = 75.0
+scale = Vector2(1.5, 1)
+
+[node name="ColorRect2" parent="Intersection" index="1"]
+offset_top = -25.0
+offset_bottom = 75.0
+scale = Vector2(1, 1.25)
+
+[node name="Intersection2" parent="." instance=ExtResource("10_a6i7i")]
+position = Vector2(8260, 2400)
+scale = Vector2(12, 12)
+
+[node name="ColorRect" parent="Intersection2" index="0"]
+offset_left = -25.0
+offset_right = 75.0
+scale = Vector2(1.5, 1)
+
+[node name="ColorRect2" parent="Intersection2" index="1"]
+scale = Vector2(1, 1.25)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(5760, 3240)
+zoom = Vector2(0.1, 0.1)
+
+[node name="TrafficPaths" type="Node2D" parent="."]
+
+[node name="South-East Turn 0" type="Path2D" parent="TrafficPaths"]
+position = Vector2(-12, 48)
+curve = SubResource("Curve2D_vfhp3")
+
+[node name="South-West Turn 0" type="Path2D" parent="TrafficPaths"]
+position = Vector2(-12, 48)
+curve = SubResource("Curve2D_v07xf")
+
+[node name="North-West Turn 0" type="Path2D" parent="TrafficPaths"]
+curve = SubResource("Curve2D_3cywi")
+
+[node name="North-East Turn 0" type="Path2D" parent="TrafficPaths"]
+curve = SubResource("Curve2D_yfqa2")
+
+[node name="West-East Flow 0" type="Path2D" parent="TrafficPaths"]
+curve = SubResource("Curve2D_axt4m")
+
+[node name="West-East Flow 1" type="Path2D" parent="TrafficPaths"]
+curve = SubResource("Curve2D_m41wc")
+
+[node name="West-East Flow 2" type="Path2D" parent="TrafficPaths"]
+curve = SubResource("Curve2D_7b7eb")
+
+[node name="West-East Flow 3" type="Path2D" parent="TrafficPaths"]
+curve = SubResource("Curve2D_d35hm")
+
+[node name="West-East Flow 4" type="Path2D" parent="TrafficPaths"]
+curve = SubResource("Curve2D_7bygs")
+
+[node name="West-East Flow 5" type="Path2D" parent="TrafficPaths"]
+curve = SubResource("Curve2D_75fom")
+
+[node name="East-West Flow 0" type="Path2D" parent="TrafficPaths"]
+curve = SubResource("Curve2D_i7lub")
+
+[node name="East-West Flow 1" type="Path2D" parent="TrafficPaths"]
+curve = SubResource("Curve2D_cvats")
+
+[node name="East-West Flow 2" type="Path2D" parent="TrafficPaths"]
+curve = SubResource("Curve2D_vohhl")
+
+[node name="East-West Flow 3" type="Path2D" parent="TrafficPaths"]
+curve = SubResource("Curve2D_rtu4s")
+
+[node name="East-West Flow 4" type="Path2D" parent="TrafficPaths"]
+curve = SubResource("Curve2D_y3aoa")
+
+[node name="East-West Flow 5" type="Path2D" parent="TrafficPaths"]
+curve = SubResource("Curve2D_4cg1w")
+
+[node name="North-South Flow 0" type="Path2D" parent="TrafficPaths"]
+curve = SubResource("Curve2D_xndsl")
+
+[node name="North-South Flow 1" type="Path2D" parent="TrafficPaths"]
+curve = SubResource("Curve2D_rqv63")
+
+[node name="North-South Flow 2" type="Path2D" parent="TrafficPaths"]
+curve = SubResource("Curve2D_gl2pq")
+
+[node name="North-South Flow 3" type="Path2D" parent="TrafficPaths"]
+curve = SubResource("Curve2D_s1pu8")
+
+[node name="South-North Flow 0" type="Path2D" parent="TrafficPaths"]
+curve = SubResource("Curve2D_hkhjb")
+
+[node name="South-North Flow 1" type="Path2D" parent="TrafficPaths"]
+curve = SubResource("Curve2D_50jcr")
+
+[node name="South-North Flow 2" type="Path2D" parent="TrafficPaths"]
+curve = SubResource("Curve2D_o4fk7")
+
+[node name="South-North Flow 3" type="Path2D" parent="TrafficPaths"]
+curve = SubResource("Curve2D_pjsw1")
+
+[editable path="Intersection"]
+[editable path="Intersection2"]

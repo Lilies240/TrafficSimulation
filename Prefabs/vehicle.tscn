@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://dm4nq1msj6e00"]
+
+[ext_resource type="Script" path="res://Scripts/Vehicle.gd" id="1_fipec"]
+[ext_resource type="Texture2D" uid="uid://dgx26xnpsfree" path="res://Resources/midsize.png" id="2_cmrkr"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8f4n1"]
+radius = 111.0
+height = 504.0
+
+[node name="Vehicle" type="PathFollow2D"]
+script = ExtResource("1_fipec")
+
+[node name="CharacterBody" type="CharacterBody2D" parent="."]
+rotation = -1.5708
+motion_mode = 1
+
+[node name="CarCollider" type="CollisionShape2D" parent="CharacterBody"]
+position = Vector2(1.086e-05, -3)
+rotation = -3.14159
+shape = SubResource("CapsuleShape2D_8f4n1")
+
+[node name="CarSprite" type="Sprite2D" parent="CharacterBody"]
+rotation = 1.5708
+texture = ExtResource("2_cmrkr")

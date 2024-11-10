@@ -4,33 +4,40 @@
 
 [sub_resource type="Curve2D" id="Curve2D_hkfpx"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 154, 277, -127.136, -23.3082, 127.136, 23.3082, 357, 468, -233.082, -44.4974, 233.082, 44.4974, 645, 496, -116.541, 63.5678, 116.541, -63.5678, 938, 343, 84.757, 38.1407, -84.757, -38.1407, 978, 55, 0, 0, 0, 0, 724, 23, -8.4757, -141.968, 8.4757, 141.968, 563, 161, 0, 0, 0, 0, 671, 271)
+"points": PackedVector2Array(0, 0, 0, 0, 547, 6385, -2797.02, 767.937, 2797.02, -767.937, 7677, 4248, 0, 0, -148.322, 740.652, 11251, 315)
 }
-point_count = 8
+point_count = 3
 
-[node name="TwoLaneRoac" type="Node2D"]
+[node name="TwoLaneRoad" type="Node2D"]
 
 [node name="BaseRoad" parent="." node_paths=PackedStringArray("path2d") instance=ExtResource("1_af2ed")]
 path2d = NodePath("../Path2D")
+line_width = 600.0
+dash_length = 300
+gap_length = 600
 
 [node name="YellowLines" parent="." node_paths=PackedStringArray("path2d") instance=ExtResource("1_af2ed")]
 visible = false
 path2d = NodePath("../Path2D")
-line_width = 15.0
+line_width = 10.0
 line_color = Color(0.984314, 0.686275, 0.247059, 1)
 
 [node name="CenterDivider" parent="." node_paths=PackedStringArray("path2d") instance=ExtResource("1_af2ed")]
 visible = false
 path2d = NodePath("../Path2D")
-line_width = 3.0
+line_width = 10.0
 
 [node name="WhiteDashes" parent="." node_paths=PackedStringArray("path2d") instance=ExtResource("1_af2ed")]
 path2d = NodePath("../Path2D")
 line_width = 10.0
 line_color = Color(1, 1, 1, 1)
 line_type = 1
-dash_length = 10
-gap_length = 3
+dash_length = 30
+gap_length = 60
 
 [node name="Path2D" type="Path2D" parent="."]
 curve = SubResource("Curve2D_hkfpx")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(5760, 3240)
+zoom = Vector2(0.1, 0.1)

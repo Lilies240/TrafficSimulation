@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://dbm7d45xxgtns"]
+
+[ext_resource type="Script" path="res://Scripts/Vehicle.gd" id="1_v4m85"]
+[ext_resource type="Texture2D" uid="uid://45qwcul3dpvv" path="res://Resources/suv.png" id="2_xs01v"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8f4n1"]
+radius = 80.0
+height = 474.0
+
+[node name="SUV" type="PathFollow2D"]
+script = ExtResource("1_v4m85")
+
+[node name="CharacterBody" type="CharacterBody2D" parent="."]
+rotation = -1.5708
+motion_mode = 1
+
+[node name="SUVCollider" type="CollisionShape2D" parent="CharacterBody"]
+rotation = -3.14159
+shape = SubResource("CapsuleShape2D_8f4n1")
+
+[node name="SUVSprite" type="Sprite2D" parent="CharacterBody"]
+position = Vector2(5.5, 7.75)
+rotation = 1.5708
+scale = Vector2(1.573, 1.258)
+texture = ExtResource("2_xs01v")

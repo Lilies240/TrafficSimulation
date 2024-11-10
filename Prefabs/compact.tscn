@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://6gveku188lpk"]
+
+[ext_resource type="Script" path="res://Scripts/Vehicle.gd" id="1_yaxkq"]
+[ext_resource type="Texture2D" uid="uid://d2uk0h1t7ir11" path="res://Resources/compact.png" id="2_4m8li"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8f4n1"]
+radius = 80.0
+height = 434.0
+
+[node name="Compact" type="PathFollow2D"]
+script = ExtResource("1_yaxkq")
+
+[node name="CharacterBody" type="CharacterBody2D" parent="."]
+rotation = -1.5708
+motion_mode = 1
+
+[node name="CompactCollider" type="CollisionShape2D" parent="CharacterBody"]
+rotation = -3.14159
+shape = SubResource("CapsuleShape2D_8f4n1")
+
+[node name="CompactSprite" type="Sprite2D" parent="CharacterBody"]
+position = Vector2(-2.5, 0)
+scale = Vector2(1.4, 1.894)
+texture = ExtResource("2_4m8li")

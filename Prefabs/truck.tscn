@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://bj6cai8eqhlp0"]
+
+[ext_resource type="Script" path="res://Scripts/Vehicle.gd" id="1_bi5u6"]
+[ext_resource type="Texture2D" uid="uid://bpwffwji50n15" path="res://Resources/semitruck.png" id="2_b8apo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h74vq"]
+size = Vector2(170, 2175)
+
+[node name="Truck" type="PathFollow2D"]
+script = ExtResource("1_bi5u6")
+
+[node name="CharacterBody" type="CharacterBody2D" parent="."]
+rotation = -1.5708
+motion_mode = 1
+
+[node name="TruckCollider" type="CollisionShape2D" parent="CharacterBody"]
+rotation = -3.14159
+shape = SubResource("RectangleShape2D_h74vq")
+
+[node name="TruckSprite" type="Sprite2D" parent="CharacterBody"]
+position = Vector2(6.6, 15)
+rotation = 1.5708
+scale = Vector2(3.975, 2.101)
+texture = ExtResource("2_b8apo")
