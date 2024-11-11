@@ -17,6 +17,7 @@ var deceleration: float = 70.0  # Deceleration rate (speed decrease per second)
 var current_speed: float = 0.0  # The vehicle's current speed
 
 var spawner: Node # Variable to hold the reference to the spawner
+var route: Array[Path2D] # list of paths the vehicle follows
 
 func initialize(spawner_reference: Node, vType: Enums.VehicleType):
 	spawner = spawner_reference
@@ -81,17 +82,18 @@ func _ready():
 
 func _process(delta):
 	# Handle acceleration and deceleration
-	if should_accelerate():
-		accelerate(delta)
-	else:
+	if should_decelerate():
 		decelerate(delta)
+	elif should_accelerate():
+		accelerate(delta)
+	
 	
 	# Move the vehicle along the path
 	progress += current_speed * delta
 	
-	# Ensure progress_ratio loops around if it exceeds 1.0
+	# Move to next path if progress exceeds 1.0
 	if progress_ratio > 1.0:
-		progress_ratio = 0.0
+		pass
 
 # Function to handle acceleration
 func accelerate(delta):
@@ -107,8 +109,7 @@ func decelerate(delta):
 
 # Conditions to determine if the car should accelerate
 func should_accelerate() -> bool:
-	# For now, we can just assume the car always accelerates.
-	# In a real scenario, this might depend on input, obstacles, or other logic.
+	# Accelerate if under the speed limit
 	return true
 
 # Conditions to determine if the car should decelerate
@@ -120,7 +121,7 @@ func should_decelerate() -> bool:
 			continue
 		
 		# Check if other vehicle is on current path
-		if other_vehicle.path == self.path:
+		if other_vehicle.path in route:
 			# Calculate distance along path
 			var distance_to_other = other_vehicle.progress - self.progress - length/2 - other_vehicle.length/2
 			

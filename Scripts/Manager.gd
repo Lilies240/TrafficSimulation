@@ -8,6 +8,15 @@ extends Node2D
 @export var suv_scene: PackedScene
 @export var truck_scene: PackedScene
 
+@export var vehicleProbabilites: Array[float]
+@onready var compactProb: float = vehicleProbabilites[0]
+@onready var midsizeProb: float = compactProb + vehicleProbabilites[1]
+@onready var suvProb: float = compactProb + midsizeProb + vehicleProbabilites[2]
+@onready var truckProb: float = compactProb + midsizeProb + suvProb + vehicleProbabilites[3]
+
+@export var majorRoadSpawns: Array[Path2D]
+@export var minorRoadSpawns: Array[Path2D]
+
 @export var spawnQueue: Array[SpawnRequest] = [] # the queue of vehicle spawns
 
 var vehicleInstances: Array = []  # Stores active vehicle instances
@@ -44,7 +53,7 @@ func spawn_vehicle(request: SpawnRequest):
 			vehicle_instance = vehicle_scene.instantiate()
 	
 	# Add the vehicle to specified road
-	var path_node = get_node(request.spawnPath) if request.spawnPath != null else null
+	var path_node = get_node(request.spawnPaths[0]) if request.spawnPaths != null else null
 	if path_node:
 		path_node.add_child(vehicle_instance)
 	else:

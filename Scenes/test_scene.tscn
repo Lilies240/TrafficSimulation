@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=3 uid="uid://c2igiwimyx0ws"]
+[gd_scene load_steps=49 format=3 uid="uid://c2igiwimyx0ws"]
 
 [ext_resource type="Script" path="res://Scripts/Manager.gd" id="1_tdvwb"]
 [ext_resource type="PackedScene" uid="uid://dm4nq1msj6e00" path="res://Prefabs/vehicle.tscn" id="2_yofyd"]
@@ -16,121 +16,7 @@
 [sub_resource type="Resource" id="Resource_qnn64"]
 script = ExtResource("7_1o80a")
 vehicleType = 3
-spawnPaths = Array[NodePath]([])
-spawnTime = 0.0
-
-[sub_resource type="Resource" id="Resource_yeyvm"]
-script = ExtResource("7_1o80a")
-vehicleType = 3
-spawnPaths = Array[NodePath]([])
-spawnTime = 0.0
-
-[sub_resource type="Resource" id="Resource_uypjo"]
-script = ExtResource("7_1o80a")
-vehicleType = 3
-spawnPaths = Array[NodePath]([])
-spawnTime = 0.0
-
-[sub_resource type="Resource" id="Resource_nbb1w"]
-script = ExtResource("7_1o80a")
-vehicleType = 3
-spawnPaths = Array[NodePath]([])
-spawnTime = 0.0
-
-[sub_resource type="Resource" id="Resource_8p8i8"]
-script = ExtResource("7_1o80a")
-vehicleType = 3
-spawnPaths = Array[NodePath]([])
-spawnTime = 0.0
-
-[sub_resource type="Resource" id="Resource_mou8m"]
-script = ExtResource("7_1o80a")
-vehicleType = 3
-spawnPaths = Array[NodePath]([])
-spawnTime = 0.0
-
-[sub_resource type="Resource" id="Resource_2bdyy"]
-script = ExtResource("7_1o80a")
-vehicleType = 3
-spawnPaths = Array[NodePath]([])
-spawnTime = 0.0
-
-[sub_resource type="Resource" id="Resource_3mpn2"]
-script = ExtResource("7_1o80a")
-vehicleType = 3
-spawnPaths = Array[NodePath]([])
-spawnTime = 0.0
-
-[sub_resource type="Resource" id="Resource_askbe"]
-script = ExtResource("7_1o80a")
-vehicleType = 3
-spawnPaths = Array[NodePath]([])
-spawnTime = 0.0
-
-[sub_resource type="Resource" id="Resource_16iwg"]
-script = ExtResource("7_1o80a")
-vehicleType = 3
-spawnPaths = Array[NodePath]([])
-spawnTime = 0.0
-
-[sub_resource type="Resource" id="Resource_tjls2"]
-script = ExtResource("7_1o80a")
-vehicleType = 3
-spawnPaths = Array[NodePath]([])
-spawnTime = 0.0
-
-[sub_resource type="Resource" id="Resource_d4icx"]
-script = ExtResource("7_1o80a")
-vehicleType = 3
-spawnPaths = Array[NodePath]([])
-spawnTime = 0.0
-
-[sub_resource type="Resource" id="Resource_44eun"]
-script = ExtResource("7_1o80a")
-vehicleType = 1
-spawnPaths = Array[NodePath]([])
-spawnTime = 0.0
-
-[sub_resource type="Resource" id="Resource_rdsbh"]
-script = ExtResource("7_1o80a")
-vehicleType = 2
-spawnPaths = Array[NodePath]([])
-spawnTime = 0.0
-
-[sub_resource type="Resource" id="Resource_qm7nd"]
-script = ExtResource("7_1o80a")
-vehicleType = 3
-spawnPaths = Array[NodePath]([])
-spawnTime = 0.0
-
-[sub_resource type="Resource" id="Resource_k767t"]
-script = ExtResource("7_1o80a")
-vehicleType = 1
-spawnPaths = Array[NodePath]([])
-spawnTime = 0.0
-
-[sub_resource type="Resource" id="Resource_s5pvm"]
-script = ExtResource("7_1o80a")
-vehicleType = 1
-spawnPaths = Array[NodePath]([])
-spawnTime = 0.0
-
-[sub_resource type="Resource" id="Resource_opd1k"]
-script = ExtResource("7_1o80a")
-vehicleType = 2
-spawnPaths = Array[NodePath]([])
-spawnTime = 0.0
-
-[sub_resource type="Resource" id="Resource_fduvx"]
-script = ExtResource("7_1o80a")
-vehicleType = 3
-spawnPaths = Array[NodePath]([])
-spawnTime = 0.0
-
-[sub_resource type="Resource" id="Resource_lkb72"]
-script = ExtResource("7_1o80a")
-vehicleType = 3
-spawnPaths = Array[NodePath]([])
+spawnPaths = Array[NodePath]([NodePath("TrafficPaths/West-East Flow 0")])
 spawnTime = 0.0
 
 [sub_resource type="Curve2D" id="Curve2D_ogvtp"]
@@ -141,7 +27,13 @@ point_count = 2
 
 [sub_resource type="Curve2D" id="Curve2D_vfhp3"]
 _data = {
-"points": PackedVector2Array(-227.743, -239.729, 0, 0, 2750, 2000, -227.743, -239.729, 227.743, 239.729, 2889, 2908, 0, 0, 0, 0, 3900, 3350)
+"points": PackedVector2Array(-227.743, -239.729, 0, 0, 2750, 2000, -227.743, -239.729, 227.743, 239.729, 2889, 2908, 0, 0, 0, 0, 3900, 3050)
+}
+point_count = 3
+
+[sub_resource type="Curve2D" id="Curve2D_3ordq"]
+_data = {
+"points": PackedVector2Array(-227.743, -239.729, 0, 0, 3900, 2650, 162.14, 184.057, -162.14, -184.057, 3297, 2477, 0, 0, 0, 0, 3150, 2000)
 }
 point_count = 3
 
@@ -153,7 +45,13 @@ point_count = 3
 
 [sub_resource type="Curve2D" id="Curve2D_3cywi"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 8900, 4000, 470.902, 336.359, -470.902, -336.359, 8728, 3056, 0, 0, 0, 0, 7800, 2950)
+"points": PackedVector2Array(0, 0, 0, 0, 8900, 4000, 199.679, 268.553, -199.679, -268.553, 8710, 3220, 0, 0, 0, 0, 7800, 2950)
+}
+point_count = 3
+
+[sub_resource type="Curve2D" id="Curve2D_h8en6"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 7800, 3350, -105.446, -172.184, 105.446, 172.184, 8388, 3543, 0, 0, 0, 0, 8500, 4000)
 }
 point_count = 3
 
@@ -169,6 +67,18 @@ _data = {
 }
 point_count = 2
 
+[sub_resource type="Curve2D" id="Curve2D_p5swo"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1800, 3050, 0, 0, 0, 0, 3900, 3050)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_1yn87"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1800, 3350, 0, 0, 0, 0, 3900, 3350)
+}
+point_count = 2
+
 [sub_resource type="Curve2D" id="Curve2D_m41wc"]
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, -2100, 3350, 0, 0, 0, 0, 1800, 3350)
@@ -178,6 +88,18 @@ point_count = 2
 [sub_resource type="Curve2D" id="Curve2D_7b7eb"]
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 3900, 3050, 0, 0, 0, 0, 7800, 3050)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_uyqav"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 7800, 3050, 0, 0, 0, 0, 10000, 3050)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_4eptg"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 7800, 3350, 0, 0, 0, 0, 10000, 3350)
 }
 point_count = 2
 
@@ -205,6 +127,18 @@ _data = {
 }
 point_count = 2
 
+[sub_resource type="Curve2D" id="Curve2D_ggbtw"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 3900, 2650, 0, 0, 0, 0, 1800, 2650)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_4uugu"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 3900, 2950, 0, 0, 0, 0, 1800, 2950)
+}
+point_count = 2
+
 [sub_resource type="Curve2D" id="Curve2D_cvats"]
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 1800, 2950, 0, 0, 0, 0, -2100, 2950)
@@ -214,6 +148,18 @@ point_count = 2
 [sub_resource type="Curve2D" id="Curve2D_vohhl"]
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 7800, 2650, 0, 0, 0, 0, 3900, 2650)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_o1hsn"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 10000, 2650, 0, 0, 0, 0, 7800, 2650)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_ppk0d"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 10000, 2950, 0, 0, 0, 0, 7800, 2950)
 }
 point_count = 2
 
@@ -283,14 +229,17 @@ _data = {
 }
 point_count = 2
 
-[node name="TestScene" type="Node2D"]
+[node name="TestScene" type="Node2D" node_paths=PackedStringArray("majorRoadSpawns", "minorRoadSpawns")]
 script = ExtResource("1_tdvwb")
 vehicle_scene = ExtResource("2_yofyd")
 compact_scene = ExtResource("3_h4dsy")
 midsize_scene = ExtResource("4_jook1")
 suv_scene = ExtResource("5_eihru")
 truck_scene = ExtResource("6_xc338")
-spawnQueue = Array[ExtResource("7_1o80a")]([SubResource("Resource_qnn64"), SubResource("Resource_yeyvm"), SubResource("Resource_uypjo"), SubResource("Resource_nbb1w"), SubResource("Resource_8p8i8"), SubResource("Resource_mou8m"), SubResource("Resource_2bdyy"), SubResource("Resource_3mpn2"), SubResource("Resource_askbe"), SubResource("Resource_16iwg"), SubResource("Resource_tjls2"), SubResource("Resource_d4icx"), SubResource("Resource_44eun"), SubResource("Resource_rdsbh"), SubResource("Resource_qm7nd"), SubResource("Resource_k767t"), SubResource("Resource_s5pvm"), SubResource("Resource_opd1k"), SubResource("Resource_fduvx"), SubResource("Resource_lkb72")])
+vehicleProbabilites = Array[float]([0.25, 0.2, 0.45, 0.1])
+majorRoadSpawns = [NodePath("TrafficPaths/W-E Flow 0"), NodePath("TrafficPaths/W-E Flow 1"), NodePath("TrafficPaths/E-W Flow 4"), NodePath("TrafficPaths/E-W Flow 5")]
+minorRoadSpawns = [NodePath("TrafficPaths/N-S Flow 0"), NodePath("TrafficPaths/N-S Flow 1"), NodePath("TrafficPaths/S-N Flow 2"), NodePath("TrafficPaths/S-N Flow 3")]
+spawnQueue = Array[ExtResource("7_1o80a")]([SubResource("Resource_qnn64")])
 
 [node name="FourLaneRoad" parent="." node_paths=PackedStringArray("path2d") instance=ExtResource("8_0cbw0")]
 position = Vector2(122, -1000)
@@ -480,7 +429,7 @@ texture = ExtResource("11_50dvg")
 [node name="Sprite2D3" type="Sprite2D" parent="FourLaneRoad5"]
 position = Vector2(2878.17, -659.64)
 scale = Vector2(0.23, 0.832)
-texture = ExtResource("10_0a5jm")
+texture = ExtResource("11_50dvg")
 
 [node name="Sprite2D4" type="Sprite2D" parent="FourLaneRoad5"]
 position = Vector2(3178.17, -659.64)
@@ -529,7 +478,7 @@ texture = ExtResource("11_50dvg")
 position = Vector2(2550, 2896)
 rotation = 3.14159
 scale = Vector2(0.23, 0.832)
-texture = ExtResource("10_0a5jm")
+texture = ExtResource("11_50dvg")
 
 [node name="Intersection" parent="." instance=ExtResource("10_a6i7i")]
 position = Vector2(2222, 2400)
@@ -563,78 +512,109 @@ zoom = Vector2(0.1, 0.1)
 
 [node name="TrafficPaths" type="Node2D" parent="."]
 
-[node name="South-East Turn 0" type="Path2D" parent="TrafficPaths"]
+[node name="S-E Turn 0" type="Path2D" parent="TrafficPaths"]
 position = Vector2(-12, 48)
 curve = SubResource("Curve2D_vfhp3")
 
-[node name="South-West Turn 0" type="Path2D" parent="TrafficPaths"]
+[node name="W-N Turn 0" type="Path2D" parent="TrafficPaths"]
+position = Vector2(-12, 48)
+curve = SubResource("Curve2D_3ordq")
+
+[node name="S-W Turn 0" type="Path2D" parent="TrafficPaths"]
 position = Vector2(-12, 48)
 curve = SubResource("Curve2D_v07xf")
 
-[node name="North-West Turn 0" type="Path2D" parent="TrafficPaths"]
+[node name="N-W Turn 0" type="Path2D" parent="TrafficPaths"]
 curve = SubResource("Curve2D_3cywi")
 
-[node name="North-East Turn 0" type="Path2D" parent="TrafficPaths"]
+[node name="E-S Turn 0" type="Path2D" parent="TrafficPaths"]
+curve = SubResource("Curve2D_h8en6")
+
+[node name="N-E Turn 0" type="Path2D" parent="TrafficPaths"]
 curve = SubResource("Curve2D_yfqa2")
 
-[node name="West-East Flow 0" type="Path2D" parent="TrafficPaths"]
+[node name="W-E Flow 0" type="Path2D" parent="TrafficPaths"]
 curve = SubResource("Curve2D_axt4m")
 
-[node name="West-East Flow 1" type="Path2D" parent="TrafficPaths"]
+[node name="W-E Cross 0" type="Path2D" parent="TrafficPaths"]
+curve = SubResource("Curve2D_p5swo")
+
+[node name="W-E Cross 1" type="Path2D" parent="TrafficPaths"]
+curve = SubResource("Curve2D_1yn87")
+
+[node name="W-E Flow 1" type="Path2D" parent="TrafficPaths"]
 curve = SubResource("Curve2D_m41wc")
 
-[node name="West-East Flow 2" type="Path2D" parent="TrafficPaths"]
+[node name="W-E Flow 2" type="Path2D" parent="TrafficPaths"]
 curve = SubResource("Curve2D_7b7eb")
 
-[node name="West-East Flow 3" type="Path2D" parent="TrafficPaths"]
+[node name="W-E Cross 2" type="Path2D" parent="TrafficPaths"]
+curve = SubResource("Curve2D_uyqav")
+
+[node name="W-E Cross 3" type="Path2D" parent="TrafficPaths"]
+curve = SubResource("Curve2D_4eptg")
+
+[node name="W-E Flow 3" type="Path2D" parent="TrafficPaths"]
 curve = SubResource("Curve2D_d35hm")
 
-[node name="West-East Flow 4" type="Path2D" parent="TrafficPaths"]
+[node name="W-E Flow 4" type="Path2D" parent="TrafficPaths"]
 curve = SubResource("Curve2D_7bygs")
 
-[node name="West-East Flow 5" type="Path2D" parent="TrafficPaths"]
+[node name="W-E Flow 5" type="Path2D" parent="TrafficPaths"]
 curve = SubResource("Curve2D_75fom")
 
-[node name="East-West Flow 0" type="Path2D" parent="TrafficPaths"]
+[node name="E-W Flow 0" type="Path2D" parent="TrafficPaths"]
 curve = SubResource("Curve2D_i7lub")
 
-[node name="East-West Flow 1" type="Path2D" parent="TrafficPaths"]
+[node name="E-W Cross 0" type="Path2D" parent="TrafficPaths"]
+curve = SubResource("Curve2D_ggbtw")
+
+[node name="E-W Cross 1" type="Path2D" parent="TrafficPaths"]
+curve = SubResource("Curve2D_4uugu")
+
+[node name="E-W Flow 1" type="Path2D" parent="TrafficPaths"]
 curve = SubResource("Curve2D_cvats")
 
-[node name="East-West Flow 2" type="Path2D" parent="TrafficPaths"]
+[node name="E-W Flow 2" type="Path2D" parent="TrafficPaths"]
 curve = SubResource("Curve2D_vohhl")
 
-[node name="East-West Flow 3" type="Path2D" parent="TrafficPaths"]
+[node name="E-W Cross 2" type="Path2D" parent="TrafficPaths"]
+curve = SubResource("Curve2D_o1hsn")
+
+[node name="E-W Cross 3" type="Path2D" parent="TrafficPaths"]
+curve = SubResource("Curve2D_ppk0d")
+
+[node name="E-W Flow 3" type="Path2D" parent="TrafficPaths"]
 curve = SubResource("Curve2D_rtu4s")
 
-[node name="East-West Flow 4" type="Path2D" parent="TrafficPaths"]
+[node name="E-W Flow 4" type="Path2D" parent="TrafficPaths"]
 curve = SubResource("Curve2D_y3aoa")
 
-[node name="East-West Flow 5" type="Path2D" parent="TrafficPaths"]
+[node name="E-W Flow 5" type="Path2D" parent="TrafficPaths"]
 curve = SubResource("Curve2D_4cg1w")
 
-[node name="North-South Flow 0" type="Path2D" parent="TrafficPaths"]
+[node name="N-S Flow 0" type="Path2D" parent="TrafficPaths"]
 curve = SubResource("Curve2D_xndsl")
 
-[node name="North-South Flow 1" type="Path2D" parent="TrafficPaths"]
+[node name="N-S Flow 1" type="Path2D" parent="TrafficPaths"]
 curve = SubResource("Curve2D_rqv63")
 
-[node name="North-South Flow 2" type="Path2D" parent="TrafficPaths"]
+[node name="N-S Flow 2" type="Path2D" parent="TrafficPaths"]
 curve = SubResource("Curve2D_gl2pq")
 
-[node name="North-South Flow 3" type="Path2D" parent="TrafficPaths"]
+[node name="N-S Flow 3" type="Path2D" parent="TrafficPaths"]
 curve = SubResource("Curve2D_s1pu8")
 
-[node name="South-North Flow 0" type="Path2D" parent="TrafficPaths"]
+[node name="S-N Flow 0" type="Path2D" parent="TrafficPaths"]
 curve = SubResource("Curve2D_hkhjb")
 
-[node name="South-North Flow 1" type="Path2D" parent="TrafficPaths"]
+[node name="S-N Flow 1" type="Path2D" parent="TrafficPaths"]
 curve = SubResource("Curve2D_50jcr")
 
-[node name="South-North Flow 2" type="Path2D" parent="TrafficPaths"]
+[node name="S-N Flow 2" type="Path2D" parent="TrafficPaths"]
 curve = SubResource("Curve2D_o4fk7")
 
-[node name="South-North Flow 3" type="Path2D" parent="TrafficPaths"]
+[node name="S-N Flow 3" type="Path2D" parent="TrafficPaths"]
 curve = SubResource("Curve2D_pjsw1")
 
 [editable path="Intersection"]
