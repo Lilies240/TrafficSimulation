@@ -266,21 +266,21 @@ point_count = 3
 
 [node name="TestScene" type="Node2D"]
 script = ExtResource("1_tdvwb")
-control_config = 1
-peak_time_duration = 120.0
-majorTrafficRate = Array[Vector2]([Vector2(1, 3), Vector2(5, 10)])
-minorTrafficRate = Array[Vector2]([Vector2(10, 30), Vector2(30, 90)])
 vehicle_scene = ExtResource("2_yofyd")
 compact_scene = ExtResource("3_h4dsy")
 midsize_scene = ExtResource("4_jook1")
 suv_scene = ExtResource("5_eihru")
 truck_scene = ExtResource("6_xc338")
 signal_scene = ExtResource("7_dpddp")
-majorRoutes = Array[ExtResource("7_6dkdj")]([SubResource("Resource_4017t"), SubResource("Resource_k4deq"), SubResource("Resource_nbowo"), SubResource("Resource_ehowl"), SubResource("Resource_6gd48"), SubResource("Resource_vns7b")])
-minorRoutes = Array[ExtResource("7_6dkdj")]([SubResource("Resource_nysb2"), SubResource("Resource_erwn3"), SubResource("Resource_u7jft"), SubResource("Resource_yb01o")])
 traffic_signal_positions = Array[Vector2]([Vector2(2800, 2900), Vector2(8850, 2900)])
 traffic_signal_rotations = Array[float]([0.0, 180.0])
-vehicleProbabilites = Array[float]([0.98, 0.001, 0.001, 0.0])
+control_config = 2
+peak_time_duration = 120.0
+vehicleProbabilites = Array[float]([0.9, 0.001, 0.001, 0.0])
+majorTrafficRate = Array[Vector2]([Vector2(1, 3), Vector2(5, 10)])
+minorTrafficRate = Array[Vector2]([Vector2(10, 30), Vector2(30, 90)])
+majorRoutes = Array[ExtResource("7_6dkdj")]([SubResource("Resource_4017t"), SubResource("Resource_k4deq"), SubResource("Resource_nbowo"), SubResource("Resource_ehowl"), SubResource("Resource_6gd48"), SubResource("Resource_vns7b")])
+minorRoutes = Array[ExtResource("7_6dkdj")]([SubResource("Resource_nysb2"), SubResource("Resource_erwn3"), SubResource("Resource_u7jft"), SubResource("Resource_yb01o")])
 
 [node name="FourLaneRoad" parent="." node_paths=PackedStringArray("path2d") instance=ExtResource("8_0cbw0")]
 position = Vector2(122, -1000)

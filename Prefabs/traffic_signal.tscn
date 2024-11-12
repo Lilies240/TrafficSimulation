@@ -1,0 +1,20 @@
+[gd_scene load_steps=7 format=3 uid="uid://bfyi03aeul1p6"]
+
+[ext_resource type="Script" path="res://TrafficSignal.gd" id="1_255pi"]
+[ext_resource type="Texture2D" uid="uid://bd0okbfr1w5y7" path="res://Resources/allRed.png" id="2_7nbjg"]
+[ext_resource type="Texture2D" uid="uid://bekoqn67he5h3" path="res://Resources/majorGreen.png" id="3_vkq0c"]
+[ext_resource type="Texture2D" uid="uid://dp6o3swicxkq8" path="res://Resources/majorYellow.png" id="4_gad4n"]
+[ext_resource type="Texture2D" uid="uid://bl46vygnc5i2t" path="res://Resources/minorGreen.png" id="5_2mjiy"]
+[ext_resource type="Texture2D" uid="uid://bgviw8m53r7l6" path="res://Resources/minorYellow.png" id="6_wlcid"]
+
+[node name="TrafficSignal" type="Node2D" node_paths=PackedStringArray("childSprite")]
+scale = Vector2(3, 3)
+script = ExtResource("1_255pi")
+peakIntervals = Array[float]([2.0, 15.0, 4.0, 2.0, 5.0, 4.0])
+offPeakIntervals = Array[float]([2.0, 30.0, 4.0, 2.0, 10.0, 4.0])
+configuration = 1
+phaseTextures = Array[Texture]([ExtResource("2_7nbjg"), ExtResource("3_vkq0c"), ExtResource("4_gad4n"), ExtResource("5_2mjiy"), ExtResource("6_wlcid")])
+childSprite = NodePath("Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_7nbjg")
