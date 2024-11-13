@@ -24,6 +24,10 @@ func initialize(config: Enums.ControlConfig, rotation: float, manager_reference:
 	manager = manager_reference
 	phases = phaseList
 	
+	currentPhase = [Enums.TrafficLight.MAJORRED, Enums.TrafficLight.MINORRED]
+	phaseIndex = 0
+	sensor_mode_cycle = 0
+	
 	# Create a timer to handle phase transitions
 	timer = Timer.new()
 	timer.one_shot = false
@@ -41,7 +45,7 @@ func _process(delta):
 		#print(timer.time_left)
 
 func _on_timeout():
-	print("Timeout triggered, changing phase")
+	#print("Timeout triggered, changing phase")
 	# Cycle phases based on configuration
 	match configuration:
 		Enums.ControlConfig.FIXEDINTERVAL:
@@ -52,7 +56,7 @@ func _on_timeout():
 			handle_sensor_mode()
 
 func change_phase(duration: float):
-	print("Next phase in: " + str(duration))
+	#print("Next phase in: " + str(duration))
 	# Update phase and set timer for next phase change
 	currentPhase[0] = phases[phaseIndex % phases.size()] as Enums.TrafficLight  # Major phase
 	currentPhase[1] = phases[(phaseIndex + 1) % phases.size()] as Enums.TrafficLight # Minor phase
@@ -90,10 +94,10 @@ func time_of_day_duration() -> float:
 	# Different intervals for peak vs off-peak hours
 	var is_peak_time = check_peak_time()
 	if is_peak_time:
-		print("Peak Time of day duration: " + str(peakIntervals[phaseIndex % peakIntervals.size()]))
+		#print("Peak Time of day duration: " + str(peakIntervals[phaseIndex % peakIntervals.size()]))
 		return peakIntervals[phaseIndex/2 % peakIntervals.size()]
 	else:
-		print("Off-Peak Time of day duration: " + str(offPeakIntervals[phaseIndex % offPeakIntervals.size()]))
+		#print("Off-Peak Time of day duration: " + str(offPeakIntervals[phaseIndex % offPeakIntervals.size()]))
 		return offPeakIntervals[phaseIndex/2 % offPeakIntervals.size()]
 
 func handle_sensor_mode():

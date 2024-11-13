@@ -33,6 +33,7 @@ extends Node2D
 
 
 var traffic_signals: Array = []  # Array to store traffic signal instances
+var phaseList: Array = [int(Enums.TrafficLight.MAJORRED), int(Enums.TrafficLight.MINORRED), int(Enums.TrafficLight.MAJORGREEN), int(Enums.TrafficLight.MINORRED), int(Enums.TrafficLight.MAJORYELLOW), int(Enums.TrafficLight.MINORRED), int(Enums.TrafficLight.MAJORRED),int(Enums.TrafficLight.MINORRED), int(Enums.TrafficLight.MAJORRED),int(Enums.TrafficLight.MINORGREEN), int(Enums.TrafficLight.MAJORRED), int(Enums.TrafficLight.MINORYELLOW)]
 
 var vehicleInstances: Array = []  # Stores active vehicle instances
 var elapsedTime: float = 0.0  # Tracks amount of time elapsed since scene start
@@ -48,6 +49,9 @@ var minorCarThroughput: float = 0.0  # Time it takes for minor traffic to get th
 
 var cycleTime: float = 0.0 # keep track of current cycle time elapsed
 var isPeakTime: bool = true # keeps track of current cycle
+var cyclesElapsed: int = 0 # number of cycles run
+var currentcycleInfo: Array[float]
+var allInfo = []
 
 func _ready():
 	Engine.time_scale = simulationTimeScale
@@ -59,8 +63,6 @@ func spawn_traffic_signals():
 	if traffic_signal_positions.size() != traffic_signal_rotations.size():
 		print("Error: Mismatch between traffic signal positions and rotations.")
 		return
-	
-	var phaseList: Array = [int(Enums.TrafficLight.MAJORRED), int(Enums.TrafficLight.MINORRED), int(Enums.TrafficLight.MAJORGREEN), int(Enums.TrafficLight.MINORRED), int(Enums.TrafficLight.MAJORYELLOW), int(Enums.TrafficLight.MINORRED), int(Enums.TrafficLight.MAJORRED),int(Enums.TrafficLight.MINORRED), int(Enums.TrafficLight.MAJORRED),int(Enums.TrafficLight.MINORGREEN), int(Enums.TrafficLight.MAJORRED), int(Enums.TrafficLight.MINORYELLOW)]
 	
 	# Create each traffic signal at the specified position and rotation
 	for i in range(traffic_signal_positions.size()):
@@ -129,10 +131,45 @@ func _process(delta):
 	# Check if simulation run time is over
 	if elapsedTime >= simulationRunTime:
 		# print final results
-		print("Final results: \n\tCars Spawned: " + str(majorCarsSpawned+minorCarsSpawned) + " (" + str(majorCarsSpawned) + " major, " + str(minorCarsSpawned) + " minor)"
-							+ "\n\tCars Passed: " + str(majorCarsPassed+minorCarsPassed) + " (" + str(majorCarsPassed) + " major, " + str(minorCarsPassed) + " minor)"
-							+ "\n\tAverage Throughput: " + str((majorCarThroughput+minorCarThroughput)/(majorCarsPassed+minorCarsPassed)) + " (" + str(majorCarThroughput/majorCarsPassed) + " major, " + str(minorCarThroughput/minorCarsPassed) + " minor)")
-		get_tree().paused = true
+		#print("Final results: \n\tCars Spawned: " + str(majorCarsSpawned+minorCarsSpawned) + " (" + str(majorCarsSpawned) + " major, " + str(minorCarsSpawned) + " minor)"
+							#+ "\n\tCars Passed: " + str(majorCarsPassed+minorCarsPassed) + " (" + str(majorCarsPassed) + " major, " + str(minorCarsPassed) + " minor)"
+							#+ "\n\tAverage Throughput: " + str((majorCarThroughput+minorCarThroughput)/(majorCarsPassed+minorCarsPassed)) + " (" + str(majorCarThroughput/majorCarsPassed) + " major, " + str(minorCarThroughput/minorCarsPassed) + " minor)")
+		
+		currentcycleInfo = [majorCarsSpawned,minorCarsSpawned,(majorCarsSpawned+minorCarsSpawned),majorCarsPassed,minorCarsPassed,(majorCarsPassed+minorCarsPassed),(majorCarThroughput/majorCarsPassed),(minorCarThroughput/minorCarsPassed),((majorCarThroughput+minorCarThroughput)/(majorCarsPassed+minorCarsPassed))]
+		allInfo.append(currentcycleInfo)
+		cyclesElapsed += 1
+		print("Cycle " + str(cyclesElapsed))
+		if cyclesElapsed >= 30:
+			var s = ""
+			for value in range(len(currentcycleInfo)):
+				for cycle in range(len(allInfo)):
+					s += str(allInfo[cycle][value])
+					if cycle != len(allInfo) - 1:
+						s += ","
+				s += "\n"
+			print(s)
+			get_tree().paused = true
+		else: # Reset simulation
+			for instance in vehicleInstances:
+				instance.free()
+				vehicleInstances.erase(instance)
+			
+			elapsedTime = 0
+			next_major_spawn_time = 0
+			next_minor_spawn_time = 0
+			
+			for i in range(len(traffic_signals)):
+				traffic_signals[i].initialize(control_config, traffic_signal_rotations[i], self, phaseList)
+			
+			majorCarsPassed = 0
+			minorCarsPassed = 0
+			majorCarsSpawned = 0
+			minorCarsSpawned = 0
+			majorCarThroughput = 0
+			minorCarThroughput = 0
+			
+			cycleTime = 0
+			isPeakTime = true
 	
 	# Check if traffic pattern needs to change
 	if isPeakTime:
@@ -151,14 +188,14 @@ func _process(delta):
 		var major_request = create_spawn_request(true)
 		spawn_vehicle(major_request, true)
 		majorCarsSpawned += 1
-		print("Major Cars Spawned: " + str(majorCarsSpawned) + "\nCars Spawned: " + str(majorCarsSpawned + minorCarsSpawned))
+		#print("Major Cars Spawned: " + str(majorCarsSpawned) + "\nCars Spawned: " + str(majorCarsSpawned + minorCarsSpawned))
 		schedule_next_major_spawn()  # Schedule the next major vehicle spawn
 	
 	# Check if it's time to spawn a minor vehicle
 	if elapsedTime >= next_minor_spawn_time:
 		var minor_request = create_spawn_request(false)
 		minorCarsSpawned += 1
-		print("Minor Cars Spawned: " + str(minorCarsSpawned) + "\nCars Spawned: " + str(majorCarsSpawned + minorCarsSpawned))
+		#print("Minor Cars Spawned: " + str(minorCarsSpawned) + "\nCars Spawned: " + str(majorCarsSpawned + minorCarsSpawned))
 		spawn_vehicle(minor_request, false)
 		schedule_next_minor_spawn()  # Schedule the next minor vehicle spawn
 

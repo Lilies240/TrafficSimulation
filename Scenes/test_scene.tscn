@@ -266,11 +266,11 @@ point_count = 3
 
 [node name="TestScene" type="Node2D"]
 script = ExtResource("1_tdvwb")
-control_config = 1
+control_config = 2
 peak_time_duration = 120.0
-majorTrafficRate = Array[Vector2]([Vector2(1, 3), Vector2(5, 10)])
+majorTrafficRate = Array[Vector2]([Vector2(1, 3), Vector2(5.5, 11)])
 minorTrafficRate = Array[Vector2]([Vector2(10, 30), Vector2(30, 90)])
-simulationTimeScale = 24.0
+simulationTimeScale = 80.0
 vehicle_scene = ExtResource("2_yofyd")
 compact_scene = ExtResource("3_h4dsy")
 midsize_scene = ExtResource("4_jook1")
