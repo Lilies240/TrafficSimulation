@@ -3,11 +3,15 @@
 extends Node2D
 
 @export var control_config: Enums.ControlConfig
-@export var peak_time_duration: float = 180  # Duration fo peak time in seconds
+@export var peak_time_duration: float = 180  # Duration of peak time in seconds
+@export var off_peak_time_duration: float = 120 # Duration of off-peak time in seconds
 
 @export var majorTrafficRate: Array[Vector2]  # the peak and off-peak min and max traffic arrival rate (in seconds)
 @export var minorTrafficRate: Array[Vector2]
 
+@export var simulationRunTime: float = 240 # Time that the simulation will run
+
+@export var simulationTimeScale: float = 1.0 # engine time scale
 
 @export var vehicle_scene: PackedScene
 @export var compact_scene: PackedScene
@@ -42,8 +46,11 @@ var minorCarsSpawned: int = 0  # Number of minor traffic cars spawned
 var majorCarThroughput: float = 0.0  # Time it takes for major traffic to get through
 var minorCarThroughput: float = 0.0  # Time it takes for minor traffic to get through
 
+var cycleTime: float = 0.0 # keep track of current cycle time elapsed
+var isPeakTime: bool = true # keeps track of current cycle
 
 func _ready():
+	Engine.time_scale = simulationTimeScale
 	# Spawn traffic signals
 	spawn_traffic_signals()
 
@@ -117,6 +124,27 @@ func get_traffic_signal(current_path: Path2D) -> String:
 func _process(delta):
 	# Update elapsed time
 	elapsedTime += delta
+	cycleTime += delta
+	
+	# Check if simulation run time is over
+	if elapsedTime >= simulationRunTime:
+		# print final results
+		print("Final results: \n\tCars Spawned: " + str(majorCarsSpawned+minorCarsSpawned) + " (" + str(majorCarsSpawned) + " major, " + str(minorCarsSpawned) + " minor)"
+							+ "\n\tCars Passed: " + str(majorCarsPassed+minorCarsPassed) + " (" + str(majorCarsPassed) + " major, " + str(minorCarsPassed) + " minor)"
+							+ "\n\tAverage Throughput: " + str((majorCarThroughput+minorCarThroughput)/(majorCarsPassed+minorCarsPassed)) + " (" + str(majorCarThroughput/majorCarsPassed) + " major, " + str(minorCarThroughput/minorCarsPassed) + " minor)")
+		get_tree().paused = true
+	
+	# Check if traffic pattern needs to change
+	if isPeakTime:
+		if cycleTime >= peak_time_duration:
+			# reset cycleTime and update isPeakTime
+			cycleTime = 0
+			isPeakTime = not isPeakTime
+	else:
+		if cycleTime >= off_peak_time_duration:
+			# reset cycleTime and update isPeakTime
+			cycleTime = 0
+			isPeakTime = not isPeakTime
 	
 	# Check if it's time to spawn a major vehicle
 	if elapsedTime >= next_major_spawn_time:
@@ -210,7 +238,7 @@ func spawn_vehicle(request: SpawnRequest, isMajor: bool):
 
 func is_peak_time() -> bool:
 	# Check if current period is peak or off-peak time
-	return int(elapsedTime / peak_time_duration) % 2 == 0
+	return isPeakTime
 
 func _compare_spawn_times(a: SpawnRequest, b: SpawnRequest) -> int:
 	return int(a.spawnTime - b.spawnTime)
@@ -233,10 +261,10 @@ func removeInstance(instance: Node, isMajor: bool, throughput: float):
 	if isMajor:
 		majorCarsPassed += 1
 		majorCarThroughput += throughput
-		print("Major Cars Passed: " + str(majorCarsPassed) + "\nCars Passed: " + str(majorCarsPassed + minorCarsPassed) + "\nThroughput: " + str(throughput) + "\nAverage Major Car Throughput: " + str(majorCarThroughput / majorCarsPassed))
+		#print("Major Cars Passed: " + str(majorCarsPassed) + "\nCars Passed: " + str(majorCarsPassed + minorCarsPassed) + "\nThroughput: " + str(throughput) + "\nAverage Major Car Throughput: " + str(majorCarThroughput / majorCarsPassed))
 	else:
 		minorCarsPassed += 1
 		minorCarThroughput += throughput
-		print("Minor Cars Passed: " + str(minorCarsPassed) + "\nCars Passed: " + str(majorCarsPassed + minorCarsPassed) + "\nThroughput: " + str(throughput) + "\nAverage Minor Car Throughput: " + str(minorCarThroughput / minorCarsPassed))
+		#print("Minor Cars Passed: " + str(minorCarsPassed) + "\nCars Passed: " + str(majorCarsPassed + minorCarsPassed) + "\nThroughput: " + str(throughput) + "\nAverage Minor Car Throughput: " + str(minorCarThroughput / minorCarsPassed))
 	
-	print("Average Throughput: " + str((majorCarThroughput + minorCarThroughput) / (majorCarsPassed + minorCarsPassed)))
+	#print("Average Throughput: " + str((majorCarThroughput + minorCarThroughput) / (majorCarsPassed + minorCarsPassed)))

@@ -83,7 +83,7 @@ func initialize(spawner_reference: Node, vType: Enums.VehicleType, nodePaths: Ar
 			#print("Semi-truck spawned")
 		_:
 			print("No vehicle type declared!")
-	
+
 
 func set_current_path(path: Path2D):
 	current_path = path

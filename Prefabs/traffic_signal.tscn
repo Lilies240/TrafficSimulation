@@ -12,6 +12,7 @@ scale = Vector2(3, 3)
 script = ExtResource("1_255pi")
 peakIntervals = Array[float]([2.0, 15.0, 4.0, 2.0, 5.0, 4.0])
 offPeakIntervals = Array[float]([2.0, 30.0, 4.0, 2.0, 10.0, 4.0])
+fixedIntervals = Array[float]([2.0, 20.0, 5.0, 2.0, 7.0, 4.0])
 configuration = 1
 phaseTextures = Array[Texture]([ExtResource("2_7nbjg"), ExtResource("3_vkq0c"), ExtResource("4_gad4n"), ExtResource("5_2mjiy"), ExtResource("6_wlcid")])
 childSprite = NodePath("Sprite2D")

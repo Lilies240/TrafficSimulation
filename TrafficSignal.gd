@@ -1,8 +1,9 @@
 # TrafficSignal.gd
 extends Node2D
 
-@export var peakIntervals: Array[float]
-@export var offPeakIntervals: Array[float]
+@export var peakIntervals: Array[float]  # the durations of each phase during peak time in a time of day system
+@export var offPeakIntervals: Array[float]  # the durations of each phase during off-peak time in a time of day system
+@export var fixedIntervals: Array[float] # the durations of each phase when using a fixed interval system
 @export var configuration: Enums.ControlConfig
 @export var phaseTextures: Array[Texture]
 var phases: Array 
@@ -83,7 +84,7 @@ func change_phase(duration: float):
 
 func fixed_interval_duration() -> float:
 	# Use fixed interval for all phases
-	return peakIntervals[(phaseIndex / 2) % peakIntervals.size()]  # Example: fixed interval could be a single duration
+	return fixedIntervals[(phaseIndex / 2) % fixedIntervals.size()]
 
 func time_of_day_duration() -> float:
 	# Different intervals for peak vs off-peak hours
