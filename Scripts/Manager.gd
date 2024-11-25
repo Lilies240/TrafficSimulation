@@ -110,7 +110,7 @@ func get_traffic_signal(current_path: Path2D) -> String:
 				Enums.TrafficLight.MINORGREEN:
 					return "green"
 		"S-N Flow": # minor roads
-			if current_path.name.ends_with("0") or current_path.name.ends_with("1"): # last roads
+			if current_path.name.ends_with("0") or current_path.name.ends_with("1") or current_path.name.ends_with("4") or current_path.name.ends_with("5"): # last roads
 				return "green"
 			match traffic_signals[1].currentPhase[1]:
 				Enums.TrafficLight.MINORRED:
