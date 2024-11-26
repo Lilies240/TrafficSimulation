@@ -1,81 +1,81 @@
-[gd_scene load_steps=74 format=3 uid="uid://c2igiwimyx0ws"]
+[gd_scene load_steps=74 format=3 uid="uid://c37day2s4us3k"]
 
-[ext_resource type="Script" path="res://Scripts/Manager.gd" id="1_tdvwb"]
-[ext_resource type="PackedScene" uid="uid://dm4nq1msj6e00" path="res://Prefabs/vehicle.tscn" id="2_yofyd"]
-[ext_resource type="PackedScene" uid="uid://6gveku188lpk" path="res://Prefabs/compact.tscn" id="3_h4dsy"]
-[ext_resource type="PackedScene" uid="uid://cywwg44v5cmjl" path="res://Prefabs/midsize.tscn" id="4_jook1"]
-[ext_resource type="PackedScene" uid="uid://dbm7d45xxgtns" path="res://Prefabs/suv.tscn" id="5_eihru"]
-[ext_resource type="PackedScene" uid="uid://bj6cai8eqhlp0" path="res://Prefabs/truck.tscn" id="6_xc338"]
-[ext_resource type="Script" path="res://Scripts/Route.gd" id="7_6dkdj"]
-[ext_resource type="PackedScene" uid="uid://bfyi03aeul1p6" path="res://Prefabs/traffic_signal.tscn" id="7_dpddp"]
-[ext_resource type="PackedScene" uid="uid://cpuk2e3u5ts7k" path="res://Prefabs/road_drawer.tscn" id="8_0cbw0"]
-[ext_resource type="Texture2D" uid="uid://cuqenu2smf7qi" path="res://Resources/TurnOnly.png" id="9_je76d"]
-[ext_resource type="Texture2D" uid="uid://odskwoushfyd" path="res://Resources/TwoDirection.png" id="10_0a5jm"]
-[ext_resource type="PackedScene" uid="uid://dqde08ap6rrio" path="res://Prefabs/intersection.tscn" id="10_a6i7i"]
-[ext_resource type="Texture2D" uid="uid://3u4ah4xo833q" path="res://Resources/ForwardOnly.png" id="11_50dvg"]
+[ext_resource type="Script" path="res://Scripts/Manager.gd" id="1_8tnbq"]
+[ext_resource type="PackedScene" uid="uid://dm4nq1msj6e00" path="res://Prefabs/vehicle.tscn" id="2_srvlq"]
+[ext_resource type="PackedScene" uid="uid://6gveku188lpk" path="res://Prefabs/compact.tscn" id="3_jyduf"]
+[ext_resource type="PackedScene" uid="uid://cywwg44v5cmjl" path="res://Prefabs/midsize.tscn" id="4_68gnr"]
+[ext_resource type="PackedScene" uid="uid://dbm7d45xxgtns" path="res://Prefabs/suv.tscn" id="5_clito"]
+[ext_resource type="PackedScene" uid="uid://bj6cai8eqhlp0" path="res://Prefabs/truck.tscn" id="6_yogp8"]
+[ext_resource type="PackedScene" uid="uid://bfyi03aeul1p6" path="res://Prefabs/traffic_signal.tscn" id="7_blkxo"]
+[ext_resource type="Script" path="res://Scripts/Route.gd" id="8_5fuok"]
+[ext_resource type="PackedScene" uid="uid://cpuk2e3u5ts7k" path="res://Prefabs/road_drawer.tscn" id="9_2e38k"]
+[ext_resource type="Texture2D" uid="uid://cuqenu2smf7qi" path="res://Resources/TurnOnly.png" id="10_5rgxg"]
+[ext_resource type="Texture2D" uid="uid://odskwoushfyd" path="res://Resources/TwoDirection.png" id="11_34niy"]
+[ext_resource type="Texture2D" uid="uid://3u4ah4xo833q" path="res://Resources/ForwardOnly.png" id="12_soxea"]
+[ext_resource type="PackedScene" uid="uid://dqde08ap6rrio" path="res://Prefabs/intersection.tscn" id="13_724y6"]
 
 [sub_resource type="Resource" id="Resource_4017t"]
-script = ExtResource("7_6dkdj")
+script = ExtResource("8_5fuok")
 paths = Array[NodePath]([NodePath("TrafficPaths/W-E Flow 1"), NodePath("TrafficPaths/W-E Cross 1"), NodePath("TrafficPaths/W-E Flow 3"), NodePath("TrafficPaths/E-S Turn 0"), NodePath("TrafficPaths/N-S Flow 2")])
 
 [sub_resource type="Resource" id="Resource_k4deq"]
-script = ExtResource("7_6dkdj")
+script = ExtResource("8_5fuok")
 paths = Array[NodePath]([NodePath("TrafficPaths/W-E Flow 1"), NodePath("TrafficPaths/W-E Cross 1"), NodePath("TrafficPaths/W-E Flow 3"), NodePath("TrafficPaths/W-E Cross 3"), NodePath("TrafficPaths/W-E Flow 5")])
 
 [sub_resource type="Resource" id="Resource_nbowo"]
-script = ExtResource("7_6dkdj")
+script = ExtResource("8_5fuok")
 paths = Array[NodePath]([NodePath("TrafficPaths/W-E Flow 0"), NodePath("TrafficPaths/W-E Cross 0"), NodePath("TrafficPaths/W-E Flow 2"), NodePath("TrafficPaths/W-E Cross 2"), NodePath("TrafficPaths/W-E Flow 4")])
 
 [sub_resource type="Resource" id="Resource_ehowl"]
-script = ExtResource("7_6dkdj")
+script = ExtResource("8_5fuok")
 paths = Array[NodePath]([NodePath("TrafficPaths/E-W Flow 5"), NodePath("TrafficPaths/E-W Cross 3"), NodePath("TrafficPaths/E-W Flow 3"), NodePath("TrafficPaths/E-W Cross 1"), NodePath("TrafficPaths/E-W Flow 1")])
 
 [sub_resource type="Resource" id="Resource_6gd48"]
-script = ExtResource("7_6dkdj")
+script = ExtResource("8_5fuok")
 paths = Array[NodePath]([NodePath("TrafficPaths/E-W Flow 4"), NodePath("TrafficPaths/E-W Cross 2"), NodePath("TrafficPaths/E-W Flow 2"), NodePath("TrafficPaths/E-W Cross 0"), NodePath("TrafficPaths/E-W Flow 0")])
 
 [sub_resource type="Resource" id="Resource_vns7b"]
-script = ExtResource("7_6dkdj")
+script = ExtResource("8_5fuok")
 paths = Array[NodePath]([NodePath("TrafficPaths/E-W Flow 4"), NodePath("TrafficPaths/E-W Cross 2"), NodePath("TrafficPaths/E-W Flow 2"), NodePath("TrafficPaths/W-N Turn 0"), NodePath("TrafficPaths/S-N Flow 1")])
 
 [sub_resource type="Resource" id="Resource_w2jpq"]
-script = ExtResource("7_6dkdj")
+script = ExtResource("8_5fuok")
 paths = Array[NodePath]([NodePath("TrafficPaths/E-W Flow 4"), NodePath("TrafficPaths/W-N Turn 1"), NodePath("TrafficPaths/S-N Flow 5")])
 
 [sub_resource type="Resource" id="Resource_nysb2"]
-script = ExtResource("7_6dkdj")
+script = ExtResource("8_5fuok")
 paths = Array[NodePath]([NodePath("TrafficPaths/N-S Flow 0"), NodePath("TrafficPaths/S-W Turn 0"), NodePath("TrafficPaths/E-W Flow 0")])
 
 [sub_resource type="Resource" id="Resource_erwn3"]
-script = ExtResource("7_6dkdj")
+script = ExtResource("8_5fuok")
 paths = Array[NodePath]([NodePath("TrafficPaths/N-S Flow 1"), NodePath("TrafficPaths/S-E Turn 0"), NodePath("TrafficPaths/W-E Flow 2"), NodePath("TrafficPaths/W-E Cross 2"), NodePath("TrafficPaths/W-E Flow 4")])
 
 [sub_resource type="Resource" id="Resource_u7jft"]
-script = ExtResource("7_6dkdj")
+script = ExtResource("8_5fuok")
 paths = Array[NodePath]([NodePath("TrafficPaths/S-N Flow 2"), NodePath("TrafficPaths/N-W Turn 0"), NodePath("TrafficPaths/E-W Flow 3"), NodePath("TrafficPaths/E-W Cross 1"), NodePath("TrafficPaths/E-W Flow 1")])
 
 [sub_resource type="Resource" id="Resource_yb01o"]
-script = ExtResource("7_6dkdj")
+script = ExtResource("8_5fuok")
 paths = Array[NodePath]([NodePath("TrafficPaths/S-N Flow 3"), NodePath("TrafficPaths/N-E Turn 0"), NodePath("TrafficPaths/W-E Flow 5")])
 
 [sub_resource type="Resource" id="Resource_6jbbv"]
-script = ExtResource("7_6dkdj")
+script = ExtResource("8_5fuok")
 paths = Array[NodePath]([NodePath("TrafficPaths/S-N Flow 3"), NodePath("TrafficPaths/S-N Cross 0"), NodePath("TrafficPaths/S-N Flow 5")])
 
 [sub_resource type="Resource" id="Resource_jik7k"]
-script = ExtResource("7_6dkdj")
+script = ExtResource("8_5fuok")
 paths = Array[NodePath]([NodePath("TrafficPaths/N-S Flow 4"), NodePath("TrafficPaths/N-S Cross 0"), NodePath("TrafficPaths/N-S Flow 2")])
 
 [sub_resource type="Resource" id="Resource_xn7dn"]
-script = ExtResource("7_6dkdj")
+script = ExtResource("8_5fuok")
 paths = Array[NodePath]([NodePath("TrafficPaths/N-S Flow 4"), NodePath("TrafficPaths/S-W Turn 1"), NodePath("TrafficPaths/E-W Flow 2"), NodePath("TrafficPaths/E-W Cross 0"), NodePath("TrafficPaths/E-W Flow 0")])
 
 [sub_resource type="Resource" id="Resource_y8m7w"]
-script = ExtResource("7_6dkdj")
+script = ExtResource("8_5fuok")
 paths = Array[NodePath]([NodePath("TrafficPaths/N-S Flow 4"), NodePath("TrafficPaths/S-W Turn 1"), NodePath("TrafficPaths/E-W Flow 2"), NodePath("TrafficPaths/W-N Turn 0"), NodePath("TrafficPaths/S-N Flow 1")])
 
 [sub_resource type="Resource" id="Resource_gka50"]
-script = ExtResource("7_6dkdj")
+script = ExtResource("8_5fuok")
 paths = Array[NodePath]([NodePath("TrafficPaths/N-S Flow 5"), NodePath("TrafficPaths/S-E Turn 1"), NodePath("TrafficPaths/W-E Flow 5")])
 
 [sub_resource type="Curve2D" id="Curve2D_ogvtp"]
@@ -343,7 +343,7 @@ _data = {
 point_count = 3
 
 [node name="TestScene" type="Node2D"]
-script = ExtResource("1_tdvwb")
+script = ExtResource("1_8tnbq")
 control_config = 2
 peak_time_duration = 720.0
 off_peak_time_duration = 720.0
@@ -352,24 +352,24 @@ minorTrafficRate = Array[Vector2]([Vector2(6.18, 7.56), Vector2(25.08, 30.66)])
 simulationRunTime = 1440.0
 simulationTimeScale = 240.0
 maxCycles = 10
-vehicle_scene = ExtResource("2_yofyd")
-compact_scene = ExtResource("3_h4dsy")
-midsize_scene = ExtResource("4_jook1")
-suv_scene = ExtResource("5_eihru")
-truck_scene = ExtResource("6_xc338")
-signal_scene = ExtResource("7_dpddp")
-majorRoutes = Array[ExtResource("7_6dkdj")]([SubResource("Resource_4017t"), SubResource("Resource_k4deq"), SubResource("Resource_nbowo"), SubResource("Resource_ehowl"), SubResource("Resource_6gd48"), SubResource("Resource_vns7b"), SubResource("Resource_w2jpq")])
-minorRoutes = Array[ExtResource("7_6dkdj")]([SubResource("Resource_nysb2"), SubResource("Resource_erwn3"), SubResource("Resource_u7jft"), SubResource("Resource_yb01o"), SubResource("Resource_6jbbv"), SubResource("Resource_jik7k"), SubResource("Resource_xn7dn"), SubResource("Resource_y8m7w"), SubResource("Resource_gka50")])
+vehicle_scene = ExtResource("2_srvlq")
+compact_scene = ExtResource("3_jyduf")
+midsize_scene = ExtResource("4_68gnr")
+suv_scene = ExtResource("5_clito")
+truck_scene = ExtResource("6_yogp8")
+signal_scene = ExtResource("7_blkxo")
+majorRoutes = Array[ExtResource("8_5fuok")]([SubResource("Resource_4017t"), SubResource("Resource_k4deq"), SubResource("Resource_nbowo"), SubResource("Resource_ehowl"), SubResource("Resource_6gd48"), SubResource("Resource_vns7b"), SubResource("Resource_w2jpq")])
+minorRoutes = Array[ExtResource("8_5fuok")]([SubResource("Resource_nysb2"), SubResource("Resource_erwn3"), SubResource("Resource_u7jft"), SubResource("Resource_yb01o"), SubResource("Resource_6jbbv"), SubResource("Resource_jik7k"), SubResource("Resource_xn7dn"), SubResource("Resource_y8m7w"), SubResource("Resource_gka50")])
 traffic_signal_positions = Array[Vector2]([Vector2(2800, 2900), Vector2(8850, 2900), Vector2(8850, 2900)])
 traffic_signal_rotations = Array[float]([0.0, 180.0, 0.0])
 vehicleProbabilites = Array[float]([0.98, 0.001, 0.001, 0.0])
 
-[node name="FourLaneRoad" parent="." node_paths=PackedStringArray("path2d") instance=ExtResource("8_0cbw0")]
+[node name="FourLaneRoad" parent="." node_paths=PackedStringArray("path2d") instance=ExtResource("9_2e38k")]
 position = Vector2(122, -1000)
 path2d = NodePath("Path2D")
 line_width = 1200.0
 
-[node name="DashedLines" parent="FourLaneRoad" node_paths=PackedStringArray("path2d") instance=ExtResource("8_0cbw0")]
+[node name="DashedLines" parent="FourLaneRoad" node_paths=PackedStringArray("path2d") instance=ExtResource("9_2e38k")]
 path2d = NodePath("../Path2D")
 line_width = 620.0
 line_color = Color(1, 1, 1, 1)
@@ -377,18 +377,18 @@ line_type = 1
 dash_length = 30
 gap_length = 60
 
-[node name="DashedDivider" parent="FourLaneRoad" node_paths=PackedStringArray("path2d") instance=ExtResource("8_0cbw0")]
+[node name="DashedDivider" parent="FourLaneRoad" node_paths=PackedStringArray("path2d") instance=ExtResource("9_2e38k")]
 path2d = NodePath("../Path2D")
 line_width = 580.0
 
-[node name="YellowLines" parent="FourLaneRoad" node_paths=PackedStringArray("path2d") instance=ExtResource("8_0cbw0")]
+[node name="YellowLines" parent="FourLaneRoad" node_paths=PackedStringArray("path2d") instance=ExtResource("9_2e38k")]
 path2d = NodePath("../Path2D")
 line_width = 30.0
 line_color = Color(0.984314, 0.686275, 0.247059, 1)
 dash_length = 30
 gap_length = 60
 
-[node name="YellowDivider" parent="FourLaneRoad" node_paths=PackedStringArray("path2d") instance=ExtResource("8_0cbw0")]
+[node name="YellowDivider" parent="FourLaneRoad" node_paths=PackedStringArray("path2d") instance=ExtResource("9_2e38k")]
 path2d = NodePath("../Path2D")
 line_width = 10.0
 
@@ -399,20 +399,20 @@ curve = SubResource("Curve2D_ogvtp")
 position = Vector2(2250, 2896)
 rotation = 3.14159
 scale = Vector2(0.230457, 0.832209)
-texture = ExtResource("9_je76d")
+texture = ExtResource("10_5rgxg")
 
 [node name="Sprite2D2" type="Sprite2D" parent="FourLaneRoad"]
 position = Vector2(2550, 2896)
 rotation = 3.14159
 scale = Vector2(-0.23, 0.832)
-texture = ExtResource("9_je76d")
+texture = ExtResource("10_5rgxg")
 
-[node name="FourLaneRoad6" parent="." node_paths=PackedStringArray("path2d") instance=ExtResource("8_0cbw0")]
+[node name="FourLaneRoad6" parent="." node_paths=PackedStringArray("path2d") instance=ExtResource("9_2e38k")]
 position = Vector2(6150, -1000)
 path2d = NodePath("../FourLaneRoad/Path2D")
 line_width = 1200.0
 
-[node name="DashedLines" parent="FourLaneRoad6" node_paths=PackedStringArray("path2d") instance=ExtResource("8_0cbw0")]
+[node name="DashedLines" parent="FourLaneRoad6" node_paths=PackedStringArray("path2d") instance=ExtResource("9_2e38k")]
 path2d = NodePath("../../FourLaneRoad/Path2D")
 line_width = 620.0
 line_color = Color(1, 1, 1, 1)
@@ -420,18 +420,18 @@ line_type = 1
 dash_length = 30
 gap_length = 60
 
-[node name="DashedDivider" parent="FourLaneRoad6" node_paths=PackedStringArray("path2d") instance=ExtResource("8_0cbw0")]
+[node name="DashedDivider" parent="FourLaneRoad6" node_paths=PackedStringArray("path2d") instance=ExtResource("9_2e38k")]
 path2d = NodePath("../../FourLaneRoad/Path2D")
 line_width = 580.0
 
-[node name="YellowLines" parent="FourLaneRoad6" node_paths=PackedStringArray("path2d") instance=ExtResource("8_0cbw0")]
+[node name="YellowLines" parent="FourLaneRoad6" node_paths=PackedStringArray("path2d") instance=ExtResource("9_2e38k")]
 path2d = NodePath("../../FourLaneRoad/Path2D")
 line_width = 30.0
 line_color = Color(0.984314, 0.686275, 0.247059, 1)
 dash_length = 30
 gap_length = 60
 
-[node name="YellowDivider" parent="FourLaneRoad6" node_paths=PackedStringArray("path2d") instance=ExtResource("8_0cbw0")]
+[node name="YellowDivider" parent="FourLaneRoad6" node_paths=PackedStringArray("path2d") instance=ExtResource("9_2e38k")]
 path2d = NodePath("../../FourLaneRoad/Path2D")
 line_width = 10.0
 
@@ -442,21 +442,21 @@ curve = SubResource("Curve2D_ogvtp")
 position = Vector2(2250, 2896)
 rotation = 3.14159
 scale = Vector2(-0.23, 0.832)
-texture = ExtResource("10_0a5jm")
+texture = ExtResource("11_34niy")
 
 [node name="Sprite2D2" type="Sprite2D" parent="FourLaneRoad6"]
 position = Vector2(2550, 2896)
 rotation = 3.14159
 scale = Vector2(-0.23, 0.832)
-texture = ExtResource("9_je76d")
+texture = ExtResource("10_5rgxg")
 
-[node name="FourLaneRoad2" parent="." node_paths=PackedStringArray("path2d") instance=ExtResource("8_0cbw0")]
+[node name="FourLaneRoad2" parent="." node_paths=PackedStringArray("path2d") instance=ExtResource("9_2e38k")]
 position = Vector2(11563, 7090)
 rotation = 3.14159
 path2d = NodePath("../FourLaneRoad/Path2D")
 line_width = 1200.0
 
-[node name="DashedLines" parent="FourLaneRoad2" node_paths=PackedStringArray("path2d") instance=ExtResource("8_0cbw0")]
+[node name="DashedLines" parent="FourLaneRoad2" node_paths=PackedStringArray("path2d") instance=ExtResource("9_2e38k")]
 path2d = NodePath("../../FourLaneRoad/Path2D")
 line_width = 620.0
 line_color = Color(1, 1, 1, 1)
@@ -464,18 +464,18 @@ line_type = 1
 dash_length = 30
 gap_length = 60
 
-[node name="DashedDivider" parent="FourLaneRoad2" node_paths=PackedStringArray("path2d") instance=ExtResource("8_0cbw0")]
+[node name="DashedDivider" parent="FourLaneRoad2" node_paths=PackedStringArray("path2d") instance=ExtResource("9_2e38k")]
 path2d = NodePath("../../FourLaneRoad/Path2D")
 line_width = 580.0
 
-[node name="YellowLines" parent="FourLaneRoad2" node_paths=PackedStringArray("path2d") instance=ExtResource("8_0cbw0")]
+[node name="YellowLines" parent="FourLaneRoad2" node_paths=PackedStringArray("path2d") instance=ExtResource("9_2e38k")]
 path2d = NodePath("../../FourLaneRoad/Path2D")
 line_width = 30.0
 line_color = Color(0.984314, 0.686275, 0.247059, 1)
 dash_length = 30
 gap_length = 60
 
-[node name="YellowDivider" parent="FourLaneRoad2" node_paths=PackedStringArray("path2d") instance=ExtResource("8_0cbw0")]
+[node name="YellowDivider" parent="FourLaneRoad2" node_paths=PackedStringArray("path2d") instance=ExtResource("9_2e38k")]
 path2d = NodePath("../../FourLaneRoad/Path2D")
 line_width = 10.0
 
@@ -486,21 +486,21 @@ curve = SubResource("Curve2D_ogvtp")
 position = Vector2(2250, 2896)
 rotation = 3.14159
 scale = Vector2(-0.23, 0.832)
-texture = ExtResource("10_0a5jm")
+texture = ExtResource("11_34niy")
 
 [node name="Sprite2D2" type="Sprite2D" parent="FourLaneRoad2"]
 position = Vector2(2550, 2896)
 rotation = 3.14159
 scale = Vector2(-0.23, 0.832)
-texture = ExtResource("9_je76d")
+texture = ExtResource("10_5rgxg")
 
-[node name="FourLaneRoad3" parent="." node_paths=PackedStringArray("path2d") instance=ExtResource("8_0cbw0")]
+[node name="FourLaneRoad3" parent="." node_paths=PackedStringArray("path2d") instance=ExtResource("9_2e38k")]
 position = Vector2(6954, 300)
 rotation = 1.5708
 path2d = NodePath("../FourLaneRoad/Path2D")
 line_width = 1200.0
 
-[node name="DashedLines" parent="FourLaneRoad3" node_paths=PackedStringArray("path2d") instance=ExtResource("8_0cbw0")]
+[node name="DashedLines" parent="FourLaneRoad3" node_paths=PackedStringArray("path2d") instance=ExtResource("9_2e38k")]
 path2d = NodePath("../../FourLaneRoad/Path2D")
 line_width = 600.0
 line_color = Color(1, 1, 1, 1)
@@ -508,18 +508,18 @@ line_type = 1
 dash_length = 30
 gap_length = 60
 
-[node name="DashedDivider" parent="FourLaneRoad3" node_paths=PackedStringArray("path2d") instance=ExtResource("8_0cbw0")]
+[node name="DashedDivider" parent="FourLaneRoad3" node_paths=PackedStringArray("path2d") instance=ExtResource("9_2e38k")]
 path2d = NodePath("../../FourLaneRoad/Path2D")
 line_width = 580.0
 
-[node name="YellowLines" parent="FourLaneRoad3" node_paths=PackedStringArray("path2d") instance=ExtResource("8_0cbw0")]
+[node name="YellowLines" parent="FourLaneRoad3" node_paths=PackedStringArray("path2d") instance=ExtResource("9_2e38k")]
 path2d = NodePath("../../FourLaneRoad/Path2D")
 line_width = 20.0
 line_color = Color(0.984314, 0.686275, 0.247059, 1)
 dash_length = 30
 gap_length = 60
 
-[node name="YellowDivider" parent="FourLaneRoad3" node_paths=PackedStringArray("path2d") instance=ExtResource("8_0cbw0")]
+[node name="YellowDivider" parent="FourLaneRoad3" node_paths=PackedStringArray("path2d") instance=ExtResource("9_2e38k")]
 path2d = NodePath("../../FourLaneRoad/Path2D")
 line_width = 10.0
 
@@ -530,31 +530,31 @@ curve = SubResource("Curve2D_ogvtp")
 position = Vector2(2250, 2896)
 rotation = 3.14159
 scale = Vector2(-0.23, 0.832)
-texture = ExtResource("10_0a5jm")
+texture = ExtResource("11_34niy")
 
 [node name="Sprite2D2" type="Sprite2D" parent="FourLaneRoad3"]
 position = Vector2(2550, 2896)
 rotation = 3.14159
 scale = Vector2(-0.23, 0.832)
-texture = ExtResource("11_50dvg")
+texture = ExtResource("12_soxea")
 
 [node name="Sprite2D3" type="Sprite2D" parent="FourLaneRoad3"]
 position = Vector2(2878.17, -659.64)
 scale = Vector2(0.23, 0.832)
-texture = ExtResource("11_50dvg")
+texture = ExtResource("12_soxea")
 
 [node name="Sprite2D4" type="Sprite2D" parent="FourLaneRoad3"]
 position = Vector2(3178.17, -659.64)
 scale = Vector2(-0.23, 0.832)
-texture = ExtResource("10_0a5jm")
+texture = ExtResource("11_34niy")
 
-[node name="FourLaneRoad5" parent="." node_paths=PackedStringArray("path2d") instance=ExtResource("8_0cbw0")]
+[node name="FourLaneRoad5" parent="." node_paths=PackedStringArray("path2d") instance=ExtResource("9_2e38k")]
 position = Vector2(953, 300)
 rotation = 1.5708
 path2d = NodePath("../FourLaneRoad/Path2D")
 line_width = 1200.0
 
-[node name="DashedLines" parent="FourLaneRoad5" node_paths=PackedStringArray("path2d") instance=ExtResource("8_0cbw0")]
+[node name="DashedLines" parent="FourLaneRoad5" node_paths=PackedStringArray("path2d") instance=ExtResource("9_2e38k")]
 path2d = NodePath("../../FourLaneRoad/Path2D")
 line_width = 600.0
 line_color = Color(1, 1, 1, 1)
@@ -562,18 +562,18 @@ line_type = 1
 dash_length = 30
 gap_length = 60
 
-[node name="DashedDivider" parent="FourLaneRoad5" node_paths=PackedStringArray("path2d") instance=ExtResource("8_0cbw0")]
+[node name="DashedDivider" parent="FourLaneRoad5" node_paths=PackedStringArray("path2d") instance=ExtResource("9_2e38k")]
 path2d = NodePath("../../FourLaneRoad/Path2D")
 line_width = 580.0
 
-[node name="YellowLines" parent="FourLaneRoad5" node_paths=PackedStringArray("path2d") instance=ExtResource("8_0cbw0")]
+[node name="YellowLines" parent="FourLaneRoad5" node_paths=PackedStringArray("path2d") instance=ExtResource("9_2e38k")]
 path2d = NodePath("../../FourLaneRoad/Path2D")
 line_width = 20.0
 line_color = Color(0.984314, 0.686275, 0.247059, 1)
 dash_length = 30
 gap_length = 60
 
-[node name="YellowDivider" parent="FourLaneRoad5" node_paths=PackedStringArray("path2d") instance=ExtResource("8_0cbw0")]
+[node name="YellowDivider" parent="FourLaneRoad5" node_paths=PackedStringArray("path2d") instance=ExtResource("9_2e38k")]
 path2d = NodePath("../../FourLaneRoad/Path2D")
 line_width = 10.0
 
@@ -584,31 +584,31 @@ curve = SubResource("Curve2D_ogvtp")
 position = Vector2(2250, 2896)
 rotation = 3.14159
 scale = Vector2(-0.23, 0.832)
-texture = ExtResource("10_0a5jm")
+texture = ExtResource("11_34niy")
 
 [node name="Sprite2D2" type="Sprite2D" parent="FourLaneRoad5"]
 position = Vector2(2550, 2896)
 rotation = 3.14159
 scale = Vector2(-0.23, 0.832)
-texture = ExtResource("11_50dvg")
+texture = ExtResource("12_soxea")
 
 [node name="Sprite2D3" type="Sprite2D" parent="FourLaneRoad5"]
 position = Vector2(2878.17, -659.64)
 scale = Vector2(0.23, 0.832)
-texture = ExtResource("11_50dvg")
+texture = ExtResource("12_soxea")
 
 [node name="Sprite2D4" type="Sprite2D" parent="FourLaneRoad5"]
 position = Vector2(3178.17, -659.64)
 scale = Vector2(0.23, 0.832)
-texture = ExtResource("11_50dvg")
+texture = ExtResource("12_soxea")
 
-[node name="FourLaneRoad4" parent="." node_paths=PackedStringArray("path2d") instance=ExtResource("8_0cbw0")]
+[node name="FourLaneRoad4" parent="." node_paths=PackedStringArray("path2d") instance=ExtResource("9_2e38k")]
 position = Vector2(12988, 300)
 rotation = 1.5708
 path2d = NodePath("../FourLaneRoad/Path2D")
 line_width = 1200.0
 
-[node name="DashedLines" parent="FourLaneRoad4" node_paths=PackedStringArray("path2d") instance=ExtResource("8_0cbw0")]
+[node name="DashedLines" parent="FourLaneRoad4" node_paths=PackedStringArray("path2d") instance=ExtResource("9_2e38k")]
 path2d = NodePath("../../FourLaneRoad/Path2D")
 line_width = 600.0
 line_color = Color(1, 1, 1, 1)
@@ -616,18 +616,18 @@ line_type = 1
 dash_length = 30
 gap_length = 60
 
-[node name="DashedDivider" parent="FourLaneRoad4" node_paths=PackedStringArray("path2d") instance=ExtResource("8_0cbw0")]
+[node name="DashedDivider" parent="FourLaneRoad4" node_paths=PackedStringArray("path2d") instance=ExtResource("9_2e38k")]
 path2d = NodePath("../../FourLaneRoad/Path2D")
 line_width = 580.0
 
-[node name="YellowLines" parent="FourLaneRoad4" node_paths=PackedStringArray("path2d") instance=ExtResource("8_0cbw0")]
+[node name="YellowLines" parent="FourLaneRoad4" node_paths=PackedStringArray("path2d") instance=ExtResource("9_2e38k")]
 path2d = NodePath("../../FourLaneRoad/Path2D")
 line_width = 20.0
 line_color = Color(0.984314, 0.686275, 0.247059, 1)
 dash_length = 30
 gap_length = 60
 
-[node name="YellowDivider" parent="FourLaneRoad4" node_paths=PackedStringArray("path2d") instance=ExtResource("8_0cbw0")]
+[node name="YellowDivider" parent="FourLaneRoad4" node_paths=PackedStringArray("path2d") instance=ExtResource("9_2e38k")]
 path2d = NodePath("../../FourLaneRoad/Path2D")
 line_width = 10.0
 
@@ -638,15 +638,15 @@ curve = SubResource("Curve2D_ogvtp")
 position = Vector2(2250, 2896)
 rotation = 3.14159
 scale = Vector2(-0.23, 0.832)
-texture = ExtResource("10_0a5jm")
+texture = ExtResource("11_34niy")
 
 [node name="Sprite2D2" type="Sprite2D" parent="FourLaneRoad4"]
 position = Vector2(2550, 2896)
 rotation = 3.14159
 scale = Vector2(0.23, 0.832)
-texture = ExtResource("11_50dvg")
+texture = ExtResource("12_soxea")
 
-[node name="Intersection" parent="." instance=ExtResource("10_a6i7i")]
+[node name="Intersection" parent="." instance=ExtResource("13_724y6")]
 position = Vector2(2222, 2400)
 scale = Vector2(12, 12)
 
@@ -660,7 +660,7 @@ offset_top = -25.0
 offset_bottom = 75.0
 scale = Vector2(1, 1.25)
 
-[node name="Intersection2" parent="." instance=ExtResource("10_a6i7i")]
+[node name="Intersection2" parent="." instance=ExtResource("13_724y6")]
 position = Vector2(8260, 2400)
 scale = Vector2(12, 12)
 

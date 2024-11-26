@@ -13,6 +13,8 @@ extends Node2D
 
 @export var simulationTimeScale: float = 1.0 # engine time scale
 
+@export var maxCycles: int = 30 # max number of simulation runs
+
 @export var vehicle_scene: PackedScene
 @export var compact_scene: PackedScene
 @export var midsize_scene: PackedScene
@@ -139,7 +141,7 @@ func _process(delta):
 		allInfo.append(currentcycleInfo)
 		cyclesElapsed += 1
 		print("Cycle " + str(cyclesElapsed))
-		if cyclesElapsed >= 30:
+		if cyclesElapsed >= maxCycles:
 			var s = ""
 			for value in range(len(currentcycleInfo)):
 				for cycle in range(len(allInfo)):

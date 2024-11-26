@@ -148,19 +148,26 @@ func should_accelerate() -> bool:
 func should_decelerate() -> bool:
 	# Calculate required stopping distance for current speed
 	var stopping_distance = (current_speed * current_speed) / (2 * deceleration) + followingTime * current_speed
-	#
-	## Check for other vehicles ahead
-	#for other_vehicle in spawner.vehicleInstances:
-		#if other_vehicle == self:
-			#continue
-		#
-		## Check if on the same path and ahead
-		#if other_vehicle.current_path == self.current_path:
-			#var distance_to_other = other_vehicle.progress - self.progress - length / 2 - other_vehicle.length / 2
-			#
-			## If within stopping range of another vehicle, start deceleration
+	
+	# Check for other vehicles ahead
+	var vehiclesAhead = 0;
+	for other_vehicle in spawner.vehicleInstances:
+		if other_vehicle == self:
+			continue
+		
+		# Check if on the same path and ahead
+		if other_vehicle.current_path == self.current_path or (current_path_index + 1 >= 0 and current_path_index + 1 < route.size() and other_vehicle.current_path == route[current_path_index + 1]):
+			var distance_to_other = other_vehicle.progress - self.progress - length / 2 - other_vehicle.length / 2
+			
+			if distance_to_other > 0:
+				vehiclesAhead += 1;
+				print("Distance: " + str(distance_to_other));
+
+			# If within stopping range of another vehicle, start deceleration
 			#if distance_to_other > 0 and distance_to_other <= stopping_distance:
 				#return true
+	if vehiclesAhead != 0:
+		print("Vehicles ahead: " + str(vehiclesAhead));
 
 	# Check traffic signals and adjust based on distance to intersections
 	var distance_to_intersection = current_path.curve.get_baked_length() - progress
