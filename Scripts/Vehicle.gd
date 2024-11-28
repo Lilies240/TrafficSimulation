@@ -171,6 +171,8 @@ func should_decelerate() -> bool:
 
 	# Check traffic signals and adjust based on distance to intersections
 	var distance_to_intersection = current_path.curve.get_baked_length() - progress
+	print("Distance to intersection: " + str(distance_to_intersection))
+	print("Stopping distance: " + str(stopping_distance))
 	match spawner.get_traffic_signal(current_path):
 		"yellow":
 			if distance_to_intersection <= stopping_distance:
