@@ -9,7 +9,7 @@ extends PathFollow2D
 var max_speed: float = 100.0  # Maximum speed of the vehicle
 var acceleration: float = 50.0  # Acceleration rate (speed increase per second)
 var deceleration: float = 70.0  # Deceleration rate (speed decrease per second)
-var stop_distance: float  # the distance it takes to come to a stop
+var current_stop_distance: float  # the distance it takes to come to a stop
 var min_queue_distance: float # the distance it keeps behind a car when stopped
 
 var current_speed: float = 0.0  # The vehicle's current speed
@@ -48,7 +48,6 @@ func initialize(spawner_reference: Node, vType: Enums.VehicleType, nodePaths: Ar
 			acceleration = 3.75 * pixels_per_meter
 			deceleration = 7 * pixels_per_meter
 			v_offset = 0.875 * pixels_per_meter
-			stop_distance = 40 * pixels_per_meter
 			min_queue_distance = 1.25 * pixels_per_meter
 			#print("Compact car spawned")
 		Enums.VehicleType.MIDSIZE:
@@ -57,7 +56,6 @@ func initialize(spawner_reference: Node, vType: Enums.VehicleType, nodePaths: Ar
 			acceleration = 3.25 * pixels_per_meter
 			deceleration = 6 * pixels_per_meter
 			v_offset = 0.95 * pixels_per_meter
-			stop_distance = 45 * pixels_per_meter
 			min_queue_distance = 1.25 * pixels_per_meter
 			#print("Midsize car spawned")
 		Enums.VehicleType.SUV:
@@ -66,7 +64,6 @@ func initialize(spawner_reference: Node, vType: Enums.VehicleType, nodePaths: Ar
 			acceleration = 2.75 * pixels_per_meter
 			deceleration = 5.25 * pixels_per_meter
 			v_offset = 1.025 * pixels_per_meter
-			stop_distance = 52.5 * pixels_per_meter
 			min_queue_distance = 1.75 * pixels_per_meter
 			#print("SUV spawned")
 		Enums.VehicleType.TRUCK:
@@ -75,7 +72,6 @@ func initialize(spawner_reference: Node, vType: Enums.VehicleType, nodePaths: Ar
 			acceleration = 1 * pixels_per_meter
 			deceleration = 3.5 * pixels_per_meter
 			v_offset = 1.25 * pixels_per_meter
-			stop_distance = 105 * pixels_per_meter
 			min_queue_distance = 2.5 * pixels_per_meter
 			#print("Semi-truck spawned")
 		_:
@@ -158,13 +154,14 @@ func handle_intersection():
 	check_upcoming_light() # Update light color
 	if is_intersection_ahead():
 		var distance_to_intersection = calculate_distance_to_intersection()
-		if (upcoming_light_color == "red" or upcoming_light_color == "yellow") and distance_to_intersection <= stop_distance:
+		var current_stop_distance = calculate_stopping_distance()
+		if (upcoming_light_color == "red" or upcoming_light_color == "yellow") and distance_to_intersection <= current_stop_distance:
 			# Decelerate and prepare to stop
-			print("\nCurrent road: " + str(current_path) + "\nCurrent state: " + str(state) + "\nIntersection Ahead: " + str(is_intersection_ahead()) + "\nUpcoming Light Color: " + str(upcoming_light_color) + "\nStopping Distance: " + str(stop_distance) + "\nCalculated Stopping Distance: " + str(current_speed ** 2 / (2 * deceleration)) + "\nDistance to intersection: " + str(distance_to_intersection) + "\nLength of road: " + str(current_path.get_curve().get_baked_length()) + "\nCurrent Progress: " + str(progress))
+			print("\nCurrent road: " + str(current_path) + "\nCurrent state: " + str(state) + "\nIntersection Ahead: " + str(is_intersection_ahead()) + "\nUpcoming Light Color: " + str(upcoming_light_color) + "\nCalculated Stopping Distance: " + str(calculate_stopping_distance()) + "\nDistance to intersection: " + str(distance_to_intersection) + "\nLength of road: " + str(current_path.get_curve().get_baked_length()) + "\nCurrent Progress: " + str(progress))
 			state = "decelerating"
-			if distance_to_intersection <= stop_distance:
+			if distance_to_intersection <= current_stop_distance:
 				state = "stopped"
-		elif upcoming_light_color == "green" or distance_to_intersection > stop_distance:
+		elif upcoming_light_color == "green" or distance_to_intersection > current_stop_distance:
 			# Accelerate or cruise
 			state = "accelerating"
 	else:
@@ -175,6 +172,10 @@ func calculate_distance_to_intersection() -> float:
 	# Calculate the distance to the end of the current path
 	var total_length = current_path.get_curve().get_baked_length()
 	return total_length - progress
+
+func calculate_stopping_distance() -> float:
+	# Calculate the current stopping distance
+	return current_speed ** 2 / (2 * deceleration)
 
 
 # Conditions to determine if the car should accelerate
@@ -187,7 +188,7 @@ func should_accelerate() -> bool:
 # Conditions to determine if the car should decelerate
 func should_decelerate() -> bool:
 	# Calculate required stopping distance for current speed
-	var stopping_distance = (current_speed * current_speed) / (2 * deceleration) + stop_distance
+	var stopping_distance = calculate_stopping_distance()
 	
 	# Check for other vehicles ahead
 	var vehiclesAhead = 0;
