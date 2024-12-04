@@ -160,7 +160,7 @@ func handle_intersection():
 		var distance_to_intersection = calculate_distance_to_intersection()
 		if (upcoming_light_color == "red" or upcoming_light_color == "yellow") and distance_to_intersection <= stop_distance:
 			# Decelerate and prepare to stop
-			print("\nCurrent road: " + str(current_path) + "\nCurrent state: " + str(state) + "\nIntersection Ahead: " + str(is_intersection_ahead()) + "\nUpcoming Light Color: " + str(upcoming_light_color))
+			print("\nCurrent road: " + str(current_path) + "\nCurrent state: " + str(state) + "\nIntersection Ahead: " + str(is_intersection_ahead()) + "\nUpcoming Light Color: " + str(upcoming_light_color) + "\nStopping Distance: " + str(stop_distance) + "\nDistance to intersection: " + str(calculate_distance_to_intersection()))
 			state = "decelerating"
 			if distance_to_intersection <= stop_distance:
 				state = "stopped"
