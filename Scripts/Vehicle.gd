@@ -32,6 +32,7 @@ func initialize(spawner_reference: Node, vType: Enums.VehicleType, nodePaths: Ar
 	current_speed = current_speed_limit
 	isMajor = is_major
 	throughput = 0.0
+	state = "accelerating"
 	
 	# Add each path in nodePaths to the route array
 	for path in nodePaths:
@@ -135,10 +136,12 @@ func decelerate(delta):
 		current_speed -= deceleration * delta
 		if current_speed < 0:
 			current_speed = 0
+			state = "stopped"
 
 func hold_speed(delta):
-	# Maintain current speed
-	pass
+	# Maintain current speed limit
+	if current_speed != current_speed_limit:
+		current_speed = current_speed_limit
 
 func stop_vehicle():
 	current_speed = 0
@@ -151,22 +154,163 @@ func is_intersection_ahead() -> bool:
 	return current_path_index % 2 == 0
 
 func handle_intersection():
+	# decelerate if speeding
+	if current_speed > current_speed_limit:
+		state = "decelerating"
+		return
+	
 	check_upcoming_light() # Update light color
+	var current_stop_distance = calculate_stopping_distance()
+	
 	if is_intersection_ahead():
 		var distance_to_intersection = calculate_distance_to_intersection()
-		var current_stop_distance = calculate_stopping_distance()
-		if (upcoming_light_color == "red" or upcoming_light_color == "yellow") and distance_to_intersection <= current_stop_distance:
-			# Decelerate and prepare to stop
-			print("\nCurrent road: " + str(current_path) + "\nCurrent state: " + str(state) + "\nIntersection Ahead: " + str(is_intersection_ahead()) + "\nUpcoming Light Color: " + str(upcoming_light_color) + "\nCalculated Stopping Distance: " + str(calculate_stopping_distance()) + "\nDistance to intersection: " + str(distance_to_intersection) + "\nLength of road: " + str(current_path.get_curve().get_baked_length()) + "\nCurrent Progress: " + str(progress))
-			state = "decelerating"
-			if distance_to_intersection <= current_stop_distance:
-				state = "stopped"
-		elif upcoming_light_color == "green" or distance_to_intersection > current_stop_distance:
-			# Accelerate or cruise
-			state = "accelerating"
+		
+		# Check the light color ahead
+		match upcoming_light_color:
+			"red":
+				# Come to a stop when approaching the intersection
+				if distance_to_intersection <= current_stop_distance:
+					if state != "stopped":
+						state = "decelerating"
+					
+					print("\nCurrent road: " + str(current_path) + "\nCurrent state: " + str(state) + "\nIntersection Ahead: " + str(is_intersection_ahead()) + "\nUpcoming Light Color: " + str(upcoming_light_color) + "\nCalculated Stopping Distance: " + str(calculate_stopping_distance()) + "\nDistance to intersection: " + str(distance_to_intersection) + "\nLength of road: " + str(current_path.get_curve().get_baked_length()) + "\nCurrent Progress: " + str(progress))
+					return
+				else: # Continue towards the intersection
+					# Check for cars ahead
+					var vehiclesAhead = 0;
+					for other_vehicle in spawner.vehicleInstances:
+						if other_vehicle == self: # Don't count itself
+							continue
+						
+						# Check if on the same path or the path ahead
+						if other_vehicle.current_path == self.current_path or (current_path_index + 1 >= 0 and current_path_index + 1 < route.size() and other_vehicle.current_path == route[current_path_index + 1]):
+							var distance_to_other = other_vehicle.progress - self.progress - length / 2 - other_vehicle.length / 2
+							
+							if distance_to_other < 0: # Don't count cars behind it
+								continue
+							
+							vehiclesAhead += 1;
+							
+							# Come to a stop when approaching the other vehicle
+							if distance_to_other <= current_stop_distance:
+								if state != "stopped":
+									state = "decelerating"
+								
+								print("\nCurrent road: " + str(current_path) + "\nCurrent state: " + str(state) + "\nIntersection Ahead: " + str(is_intersection_ahead()) + "\nUpcoming Light Color: " + str(upcoming_light_color) + "\nCalculated Stopping Distance: " + str(calculate_stopping_distance()) + "\nDistance to intersection: " + str(distance_to_intersection) + "\nLength of road: " + str(current_path.get_curve().get_baked_length()) + "\nCurrent Progress: " + str(progress))
+								return
+					
+					# Accelerate or cruise
+					if current_speed < current_speed_limit:
+						state = "accelerating"
+					else:
+						state = "cruising"
+					
+					print("\nCurrent road: " + str(current_path) + "\nCurrent state: " + str(state) + "\nIntersection Ahead: " + str(is_intersection_ahead()) + "\nUpcoming Light Color: " + str(upcoming_light_color) + "\nCalculated Stopping Distance: " + str(calculate_stopping_distance()) + "\nDistance to intersection: " + str(distance_to_intersection) + "\nLength of road: " + str(current_path.get_curve().get_baked_length()) + "\nCurrent Progress: " + str(progress))
+					return
+			"yellow":
+				# Check for cars ahead
+				var vehiclesAhead = 0;
+				for other_vehicle in spawner.vehicleInstances:
+					if other_vehicle == self: # Don't count itself
+						continue
+					
+					# Check if on the same path or the path ahead
+					if other_vehicle.current_path == self.current_path or (current_path_index + 1 >= 0 and current_path_index + 1 < route.size() and other_vehicle.current_path == route[current_path_index + 1]):
+						var distance_to_other = other_vehicle.progress - self.progress - length / 2 - other_vehicle.length / 2
+						
+						if distance_to_other < 0: # Don't count cars behind it
+							continue
+						
+						vehiclesAhead += 1;
+						
+						# Come to a stop when approaching the other vehicle
+						if distance_to_other <= current_stop_distance:
+							if state != "stopped":
+								state = "decelerating"
+							
+							print("\nCurrent road: " + str(current_path) + "\nCurrent state: " + str(state) + "\nIntersection Ahead: " + str(is_intersection_ahead()) + "\nUpcoming Light Color: " + str(upcoming_light_color) + "\nCalculated Stopping Distance: " + str(calculate_stopping_distance()) + "\nDistance to intersection: " + str(distance_to_intersection) + "\nLength of road: " + str(current_path.get_curve().get_baked_length()) + "\nCurrent Progress: " + str(progress))
+							return
+				
+				# Stop if possible at the intersection
+				if distance_to_intersection <= current_stop_distance:
+					if state != "stopped":
+						state = "decelerating"
+					
+					print("\nCurrent road: " + str(current_path) + "\nCurrent state: " + str(state) + "\nIntersection Ahead: " + str(is_intersection_ahead()) + "\nUpcoming Light Color: " + str(upcoming_light_color) + "\nCalculated Stopping Distance: " + str(calculate_stopping_distance()) + "\nDistance to intersection: " + str(distance_to_intersection) + "\nLength of road: " + str(current_path.get_curve().get_baked_length()) + "\nCurrent Progress: " + str(progress))
+					return
+				else: 
+					# Accelerate or cruise
+					if current_speed < current_speed_limit:
+						state = "accelerating"
+					else:
+						state = "cruising"
+					
+					print("\nCurrent road: " + str(current_path) + "\nCurrent state: " + str(state) + "\nIntersection Ahead: " + str(is_intersection_ahead()) + "\nUpcoming Light Color: " + str(upcoming_light_color) + "\nCalculated Stopping Distance: " + str(calculate_stopping_distance()) + "\nDistance to intersection: " + str(distance_to_intersection) + "\nLength of road: " + str(current_path.get_curve().get_baked_length()) + "\nCurrent Progress: " + str(progress))
+					return
+			"green":
+				# Check for cars ahead
+				var vehiclesAhead = 0;
+				for other_vehicle in spawner.vehicleInstances:
+					if other_vehicle == self: # Don't count itself
+						continue
+					
+					# Check if on the same path or the path ahead
+					if other_vehicle.current_path == self.current_path or (current_path_index + 1 >= 0 and current_path_index + 1 < route.size() and other_vehicle.current_path == route[current_path_index + 1]):
+						var distance_to_other = other_vehicle.progress - self.progress - length / 2 - other_vehicle.length / 2
+						
+						if distance_to_other < 0: # Don't count cars behind it
+							continue
+						
+						vehiclesAhead += 1;
+						
+						# Come to a stop when approaching the other vehicle
+						if distance_to_other <= current_stop_distance:
+							if state != "stopped":
+								state = "decelerating"
+							
+							print("\nCurrent road: " + str(current_path) + "\nCurrent state: " + str(state) + "\nIntersection Ahead: " + str(is_intersection_ahead()) + "\nUpcoming Light Color: " + str(upcoming_light_color) + "\nCalculated Stopping Distance: " + str(calculate_stopping_distance()) + "\nDistance to intersection: " + str(distance_to_intersection) + "\nLength of road: " + str(current_path.get_curve().get_baked_length()) + "\nCurrent Progress: " + str(progress))
+							return
+			
+				# Accelerate or cruise
+				if current_speed < current_speed_limit:
+					state = "accelerating"
+				else:
+					state = "cruising"
+					
+				print("\nCurrent road: " + str(current_path) + "\nCurrent state: " + str(state) + "\nIntersection Ahead: " + str(is_intersection_ahead()) + "\nUpcoming Light Color: " + str(upcoming_light_color) + "\nCalculated Stopping Distance: " + str(calculate_stopping_distance()) + "\nDistance to intersection: " + str(distance_to_intersection) + "\nLength of road: " + str(current_path.get_curve().get_baked_length()) + "\nCurrent Progress: " + str(progress))
+				return
 	else:
-		# No intersection, continue normal behavior
-		state = "accelerating"
+		# Check for cars ahead
+		var vehiclesAhead = 0;
+		for other_vehicle in spawner.vehicleInstances:
+			if other_vehicle == self: # Don't count itself
+				continue
+			
+			# Check if on the same path or the path ahead
+			if other_vehicle.current_path == self.current_path or (current_path_index + 1 >= 0 and current_path_index + 1 < route.size() and other_vehicle.current_path == route[current_path_index + 1]):
+				var distance_to_other = other_vehicle.progress - self.progress - length / 2 - other_vehicle.length / 2
+				
+				if distance_to_other < 0: # Don't count cars behind it
+					continue
+				
+				vehiclesAhead += 1;
+				
+				# Come to a stop when approaching the other vehicle
+				if distance_to_other <= current_stop_distance:
+					if state != "stopped":
+						state = "decelerating"
+					
+					print("\nCurrent road: " + str(current_path) + "\nCurrent state: " + str(state) + "\nIntersection Ahead: " + str(is_intersection_ahead()) + "\nUpcoming Light Color: " + str(upcoming_light_color) + "\nCalculated Stopping Distance: " + str(calculate_stopping_distance()) + "\nLength of road: " + str(current_path.get_curve().get_baked_length()) + "\nCurrent Progress: " + str(progress))
+					return
+		
+		# Accelerate or cruise
+		if current_speed < current_speed_limit:
+			state = "accelerating"
+		else:
+			state = "cruising"
+		
+		print("\nCurrent road: " + str(current_path) + "\nCurrent state: " + str(state) + "\nIntersection Ahead: " + str(is_intersection_ahead()) + "\nUpcoming Light Color: " + str(upcoming_light_color) + "\nCalculated Stopping Distance: " + str(calculate_stopping_distance()) + "\nLength of road: " + str(current_path.get_curve().get_baked_length()) + "\nCurrent Progress: " + str(progress))
+		return
 
 func calculate_distance_to_intersection() -> float:
 	# Calculate the distance to the end of the current path
@@ -177,49 +321,3 @@ func calculate_stopping_distance() -> float:
 	# Calculate the current stopping distance
 	return current_speed ** 2 / (2 * deceleration)
 
-
-# Conditions to determine if the car should accelerate
-func should_accelerate() -> bool:
-	# Accelerate if under the speed limit
-	if current_speed < current_speed_limit and spawner.get_traffic_signal(current_path) == "green":
-		return true
-	return false
-
-# Conditions to determine if the car should decelerate
-func should_decelerate() -> bool:
-	# Calculate required stopping distance for current speed
-	var stopping_distance = calculate_stopping_distance()
-	
-	# Check for other vehicles ahead
-	var vehiclesAhead = 0;
-	for other_vehicle in spawner.vehicleInstances:
-		if other_vehicle == self:
-			continue
-		
-		# Check if on the same path and ahead
-		if other_vehicle.current_path == self.current_path or (current_path_index + 1 >= 0 and current_path_index + 1 < route.size() and other_vehicle.current_path == route[current_path_index + 1]):
-			var distance_to_other = other_vehicle.progress - self.progress - length / 2 - other_vehicle.length / 2
-			
-			if distance_to_other > 0:
-				vehiclesAhead += 1;
-				print("Distance: " + str(distance_to_other));
-
-			# If within stopping range of another vehicle, start deceleration
-			#if distance_to_other > 0 and distance_to_other <= stopping_distance:
-				#return true
-	if vehiclesAhead != 0:
-		print("Vehicles ahead: " + str(vehiclesAhead));
-
-	# Check traffic signals and adjust based on distance to intersections
-	var distance_to_intersection = current_path.curve.get_baked_length() - progress
-	print("Distance to intersection: " + str(distance_to_intersection))
-	print("Stopping distance: " + str(stopping_distance))
-	match spawner.get_traffic_signal(current_path):
-		"yellow":
-			if distance_to_intersection <= stopping_distance:
-				return true
-		"red":
-			if distance_to_intersection <= stopping_distance:
-				return true
-
-	return false

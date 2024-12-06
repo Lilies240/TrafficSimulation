@@ -15,6 +15,8 @@ extends Node2D
 
 @export var maxCycles: int = 30 # max number of simulation runs
 
+@export var speedLimit: float = 50
+
 @export var vehicle_scene: PackedScene
 @export var compact_scene: PackedScene
 @export var midsize_scene: PackedScene
@@ -268,7 +270,7 @@ func spawn_vehicle(request: SpawnRequest, isMajor: bool):
 		print("Error: Path2D node not found for vehicle spawn.")
 	
 	# Initialize the vehicle instance
-	vehicle_instance.initialize(self, request.vehicleType, request.spawnPaths, 50, isMajor)
+	vehicle_instance.initialize(self, request.vehicleType, request.spawnPaths, speedLimit, isMajor)
 	
 	# Add the vehicle instance to the array
 	vehicleInstances.append(vehicle_instance)
