@@ -338,7 +338,7 @@ point_count = 3
 
 [sub_resource type="Curve2D" id="Curve2D_uicwc"]
 _data = {
-"points": PackedVector2Array(-227.743, -239.729, 0, 0, 2750, 2000, -227.743, -239.729, 227.743, 239.729, 2889, 2908, 0, 0, 0, 0, 3900, 3050)
+"points": PackedVector2Array(-227.743, -239.729, 0, 0, 2750, 2000, -227.743, -239.729, 227.743, 239.729, 2889, 2908, 0, 0, 0, 0, 4000, 3350)
 }
 point_count = 3
 
@@ -351,7 +351,7 @@ off_peak_time_duration = 72.0
 majorTrafficRate = Array[Vector2]([Vector2(5, 10), Vector2(5, 10)])
 minorTrafficRate = Array[Vector2]([Vector2(1, 3), Vector2(5, 10)])
 simulationRunTime = 144.0
-simulationTimeScale = 10.0
+simulationTimeScale = 2.0
 maxCycles = 1
 vehicle_scene = ExtResource("2_yofyd")
 compact_scene = ExtResource("3_h4dsy")
