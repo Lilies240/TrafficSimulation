@@ -223,7 +223,6 @@ func handle_intersection():
 				return
 		elif upcoming_light_color == "green":
 			# Accelerate or cruise
-			print("I should be going")
 			if current_speed < current_speed_limit:
 				state = "accelerating"
 			else:
