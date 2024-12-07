@@ -6,7 +6,6 @@ extends PathFollow2D
 @export var pixels_per_meter = 100
 
 var stoppingDistance: float  # the distance it takes to come to a stop
-var stoppedDistance: float # the distance it keeps behind a car when stopped
 var followingTime: float # the time in seconds that vehicle tries to keep behind the vehicle in front of it 
 
 @export var length: float = 10 # the length of the vehicle
@@ -47,8 +46,6 @@ func initialize(spawner_reference: Node, vType: Enums.VehicleType, nodePaths: Ar
 			acceleration = 3.75 * pixels_per_meter
 			deceleration = 7 * pixels_per_meter
 			v_offset = 0.875 * pixels_per_meter
-			stoppingDistance = 40 * pixels_per_meter
-			stoppedDistance = 1.25 * pixels_per_meter
 			followingTime = 2.5 * pixels_per_meter
 			#print("Compact car spawned")
 		Enums.VehicleType.MIDSIZE:
@@ -57,8 +54,6 @@ func initialize(spawner_reference: Node, vType: Enums.VehicleType, nodePaths: Ar
 			acceleration = 3.25 * pixels_per_meter
 			deceleration = 6 * pixels_per_meter
 			v_offset = 0.95 * pixels_per_meter
-			stoppingDistance = 45 * pixels_per_meter
-			stoppedDistance = 1.25 * pixels_per_meter
 			followingTime = 2.5 * pixels_per_meter
 			#print("Midsize car spawned")
 		Enums.VehicleType.SUV:
@@ -67,8 +62,6 @@ func initialize(spawner_reference: Node, vType: Enums.VehicleType, nodePaths: Ar
 			acceleration = 2.75 * pixels_per_meter
 			deceleration = 5.25 * pixels_per_meter
 			v_offset = 1.025 * pixels_per_meter
-			stoppingDistance = 52.5 * pixels_per_meter
-			stoppedDistance = 1.75 * pixels_per_meter
 			followingTime = 3.5 * pixels_per_meter
 			#print("SUV spawned")
 		Enums.VehicleType.TRUCK:
@@ -77,8 +70,6 @@ func initialize(spawner_reference: Node, vType: Enums.VehicleType, nodePaths: Ar
 			acceleration = 1 * pixels_per_meter
 			deceleration = 3.5 * pixels_per_meter
 			v_offset = 1.25 * pixels_per_meter
-			stoppingDistance = 105 * pixels_per_meter
-			stoppedDistance = 2.5 * pixels_per_meter
 			followingTime = 5 * pixels_per_meter
 			#print("Semi-truck spawned")
 		_:
@@ -131,7 +122,6 @@ func accelerate(delta):
 
 # Function to handle deceleration
 func decelerate(delta):
-	var stopping_distance = (current_speed * current_speed) / (2 * deceleration) + followingTime * current_speed
 	current_speed -= deceleration * delta
 	if current_speed < 0.5:
 		current_speed = 0
@@ -144,10 +134,13 @@ func should_accelerate() -> bool:
 		return true
 	return false
 
+func calculate_stopping_distance() -> float:
+	return (current_speed * current_speed) / (2 * deceleration) + followingTime * current_speed
+
 # Conditions to determine if the car should decelerate
 func should_decelerate() -> bool:
 	# Calculate required stopping distance for current speed
-	var stopping_distance = (current_speed * current_speed) / (2 * deceleration) + followingTime * current_speed
+	stoppingDistance = calculate_stopping_distance()
 	
 	# Check for other vehicles ahead
 	var vehiclesAhead = 0;
@@ -157,28 +150,24 @@ func should_decelerate() -> bool:
 		
 		# Check if on the same path and ahead
 		if other_vehicle.current_path == self.current_path or (current_path_index + 1 >= 0 and current_path_index + 1 < route.size() and other_vehicle.current_path == route[current_path_index + 1]):
-			var distance_to_other = other_vehicle.progress - self.progress - length / 2 - other_vehicle.length / 2
-			
-			if distance_to_other > 0:
-				vehiclesAhead += 1;
-				print("Distance: " + str(distance_to_other));
+			var distance_to_other = other_vehicle.progress - self.progress - other_vehicle.length / 2
 
 			# If within stopping range of another vehicle, start deceleration
-			#if distance_to_other > 0 and distance_to_other <= stopping_distance:
+			#if distance_to_other > 0 and distance_to_other <= stoppingDistance:
 				#return true
 	if vehiclesAhead != 0:
 		print("Vehicles ahead: " + str(vehiclesAhead));
 
 	# Check traffic signals and adjust based on distance to intersections
 	var distance_to_intersection = current_path.curve.get_baked_length() - progress
-	print("Distance to intersection: " + str(distance_to_intersection))
-	print("Stopping distance: " + str(stopping_distance))
+	#print("Distance to intersection: " + str(distance_to_intersection))
+	#print("Stopping distance: " + str(stoppingDistance))
 	match spawner.get_traffic_signal(current_path):
 		"yellow":
-			if distance_to_intersection <= stopping_distance:
+			if distance_to_intersection <= stoppingDistance:
 				return true
 		"red":
-			if distance_to_intersection <= stopping_distance:
+			if distance_to_intersection <= stoppingDistance:
 				return true
 
 	return false

@@ -56,9 +56,27 @@ var currentcycleInfo: Array[float]
 var allInfo = []
 
 func _ready():
+	get_tree().paused = false
+	
+	# Connect button signals
+	$TODButton.connect("pressed", _on_TOD_pressed)
+	$FixedButton.connect("pressed", _on_Fixed_pressed)
+	
 	Engine.time_scale = simulationTimeScale
 	# Spawn traffic signals
 	spawn_traffic_signals()
+
+func _on_TOD_pressed():
+	control_config = Enums.ControlConfig.TIMEOFDAY
+	_restart_scene()
+
+func _on_Fixed_pressed():
+	control_config = Enums.ControlConfig.FIXEDINTERVAL
+	_restart_scene()
+
+func _restart_scene():
+	var current_scene = get_tree().current_scene
+	get_tree().reload_current_scene()
 
 func spawn_traffic_signals():
 	# Ensure we have defined both positions and rotations for the traffic signals
@@ -136,6 +154,8 @@ func _process(delta):
 		#print("Final results: \n\tCars Spawned: " + str(majorCarsSpawned+minorCarsSpawned) + " (" + str(majorCarsSpawned) + " major, " + str(minorCarsSpawned) + " minor)"
 							#+ "\n\tCars Passed: " + str(majorCarsPassed+minorCarsPassed) + " (" + str(majorCarsPassed) + " major, " + str(minorCarsPassed) + " minor)"
 							#+ "\n\tAverage Throughput: " + str((majorCarThroughput+minorCarThroughput)/(majorCarsPassed+minorCarsPassed)) + " (" + str(majorCarThroughput/majorCarsPassed) + " major, " + str(minorCarThroughput/minorCarsPassed) + " minor)")
+		
+		$Label.text = "Final results: \n\tCars Spawned: " + str(majorCarsSpawned+minorCarsSpawned) + " (" + str(majorCarsSpawned) + " major, " + str(minorCarsSpawned) + " minor)" + "\n\tCars Passed: " + str(majorCarsPassed+minorCarsPassed) + " (" + str(majorCarsPassed) + " major, " + str(minorCarsPassed) + " minor)" + "\n\tAverage Throughput: " + str((majorCarThroughput+minorCarThroughput)/(majorCarsPassed+minorCarsPassed)) + "\n(" + str(majorCarThroughput/majorCarsPassed) + " major, " + str(minorCarThroughput/minorCarsPassed) + " minor)"
 		
 		currentcycleInfo = [majorCarsSpawned,minorCarsSpawned,(majorCarsSpawned+minorCarsSpawned),majorCarsPassed,minorCarsPassed,(majorCarsPassed+minorCarsPassed),(majorCarThroughput/majorCarsPassed),(minorCarThroughput/minorCarsPassed),((majorCarThroughput+minorCarThroughput)/(majorCarsPassed+minorCarsPassed))]
 		allInfo.append(currentcycleInfo)

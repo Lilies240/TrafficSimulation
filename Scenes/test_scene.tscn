@@ -343,14 +343,16 @@ _data = {
 point_count = 3
 
 [node name="TestScene" type="Node2D"]
+process_mode = 1
 script = ExtResource("1_tdvwb")
 control_config = 2
-peak_time_duration = 720.0
-off_peak_time_duration = 720.0
-majorTrafficRate = Array[Vector2]([Vector2(500, 500), Vector2(500, 500)])
-minorTrafficRate = Array[Vector2]([Vector2(500, 500), Vector2(500, 500)])
-simulationRunTime = 1440.0
-maxCycles = 10
+peak_time_duration = 72.0
+off_peak_time_duration = 72.0
+majorTrafficRate = Array[Vector2]([Vector2(5, 10), Vector2(5, 10)])
+minorTrafficRate = Array[Vector2]([Vector2(1, 3), Vector2(5, 10)])
+simulationRunTime = 144.0
+simulationTimeScale = 10.0
+maxCycles = 1
 vehicle_scene = ExtResource("2_yofyd")
 compact_scene = ExtResource("3_h4dsy")
 midsize_scene = ExtResource("4_jook1")
@@ -818,6 +820,47 @@ curve = SubResource("Curve2D_3mr6o")
 [node name="S-E Turn 1" type="Path2D" parent="TrafficPaths"]
 position = Vector2(6016, 48)
 curve = SubResource("Curve2D_uicwc")
+
+[node name="TODButton" type="Button" parent="."]
+process_mode = 3
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 10094.0
+offset_top = 4769.0
+offset_right = 10194.0
+offset_bottom = 4800.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(36.7438, 36.1399)
+size_flags_vertical = 8
+text = "Time of Day"
+
+[node name="FixedButton" type="Button" parent="."]
+process_mode = 3
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 10088.0
+offset_top = 6241.0
+offset_right = 10201.0
+offset_bottom = 6272.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(32.4729, 31.6196)
+size_flags_vertical = 8
+text = "Fixed Interval"
+
+[node name="Label" type="Label" parent="."]
+offset_left = -2080.0
+offset_top = 3904.0
+offset_right = -1840.0
+offset_bottom = 4135.0
+scale = Vector2(23.1114, 18.6436)
 
 [editable path="Intersection"]
 [editable path="Intersection2"]
