@@ -1,5 +1,11 @@
 # TrafficSimulation
 
+HOW TO OPERATE:
+- Open 'Traffic Simulation.exe' file
+- Simulation will start running on its own
+- Select the 'Time of Day' or 'Fixed Interval' button to restart the simulation with the given configuration
+  **Source code can be found in the 'Scripts' folder (.gd files)
+
 Implementation Goals:
   - Have a way to draw roads and intersections such that it is flexible enough to match real-world roads and intersections
 
