@@ -78,25 +78,6 @@ func _restart_scene():
 	var current_scene = get_tree().current_scene
 	get_tree().reload_current_scene()
 
-func spawn_traffic_signals():
-	# Ensure we have defined both positions and rotations for the traffic signals
-	if traffic_signal_positions.size() != traffic_signal_rotations.size():
-		print("Error: Mismatch between traffic signal positions and rotations.")
-		return
-	
-	# Create each traffic signal at the specified position and rotation
-	for i in range(traffic_signal_positions.size()):
-		var signal_instance = signal_scene.instantiate()
-		signal_instance.position = traffic_signal_positions[i]
-		signal_instance.rotation_degrees = traffic_signal_rotations[i]
-		signal_instance.initialize(control_config, signal_instance.rotation_degrees, self, phaseList)
-		
-		# Add to the scene and store in the array
-		add_child(signal_instance)
-		traffic_signals.append(signal_instance)
-	
-	#print("Spawned", traffic_signals.size(), "traffic signals.")
-
 func get_traffic_signal(current_path: Path2D) -> String:
 	match current_path.name.substr(0,8):
 		"W-E Flow": # major roads
@@ -150,8 +131,8 @@ func _process(delta):
 	
 	# Check if simulation run time is over
 	if elapsedTime >= simulationRunTime:
-		# print final results
-		#print("Final results: \n\tCars Spawned: " + str(majorCarsSpawned+minorCarsSpawned) + " (" + str(majorCarsSpawned) + " major, " + str(minorCarsSpawned) + " minor)"
+		# Print final results
+		  #print("Final results: \n\tCars Spawned: " + str(majorCarsSpawned+minorCarsSpawned) + " (" + str(majorCarsSpawned) + " major, " + str(minorCarsSpawned) + " minor)"
 							#+ "\n\tCars Passed: " + str(majorCarsPassed+minorCarsPassed) + " (" + str(majorCarsPassed) + " major, " + str(minorCarsPassed) + " minor)"
 							#+ "\n\tAverage Throughput: " + str((majorCarThroughput+minorCarThroughput)/(majorCarsPassed+minorCarsPassed)) + " (" + str(majorCarThroughput/majorCarsPassed) + " major, " + str(minorCarThroughput/minorCarsPassed) + " minor)")
 		
@@ -221,6 +202,25 @@ func _process(delta):
 		spawn_vehicle(minor_request, false)
 		schedule_next_minor_spawn()  # Schedule the next minor vehicle spawn
 
+func spawn_traffic_signals():
+	# Ensure we have defined both positions and rotations for the traffic signals
+	if traffic_signal_positions.size() != traffic_signal_rotations.size():
+		print("Error: Mismatch between traffic signal positions and rotations.")
+		return
+	
+	# Create each traffic signal at the specified position and rotation
+	for i in range(traffic_signal_positions.size()):
+		var signal_instance = signal_scene.instantiate()
+		signal_instance.position = traffic_signal_positions[i]
+		signal_instance.rotation_degrees = traffic_signal_rotations[i]
+		signal_instance.initialize(control_config, signal_instance.rotation_degrees, self, phaseList)
+		
+		# Add to the scene and store in the array
+		add_child(signal_instance)
+		traffic_signals.append(signal_instance)
+	
+	#print("Spawned", traffic_signals.size(), "traffic signals.")
+
 func create_spawn_request(is_major_route: bool) -> SpawnRequest:
 	# Create a new spawn request with random vehicle type and route
 	var request = SpawnRequest.new()
@@ -237,7 +237,7 @@ func create_spawn_request(is_major_route: bool) -> SpawnRequest:
 	return request
 
 func choose_random_vehicle_type() -> Enums.VehicleType:
-		# Randomly select vehicle type based on probabilities
+	# Randomly select vehicle type based on probabilities
 	var random_val = randf()  # Range up to the total cumulative probability
 	if random_val < compactProb:
 		return Enums.VehicleType.COMPACT
@@ -313,7 +313,6 @@ func kmph_to_mps(speed):
 func set_current_path(instanceNode: Node, path: Path2D):
 	instanceNode.get_parent().remove_child(instanceNode)
 	path.add_child(instanceNode)
-
 
 func removeInstance(instance: Node, isMajor: bool, throughput: float):
 	vehicleInstances.erase(instance)

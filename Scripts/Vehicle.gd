@@ -29,7 +29,7 @@ func initialize(spawner_reference: Node, vType: Enums.VehicleType, nodePaths: Ar
 	spawner = spawner_reference
 	vehicleType = vType
 	current_speed_limit = mph_to_mps(speedLimit) * pixels_per_meter
-	current_speed = current_speed_limit
+	current_speed = current_speed_limit / 2
 	isMajor = is_major
 	throughput = 0.0
 	state = "accelerating"
@@ -138,11 +138,13 @@ func decelerate(delta):
 			current_speed = 0
 			state = "stopped"
 
+# Function to maintain current speed
 func hold_speed(delta):
 	# Maintain current speed limit
 	if current_speed != current_speed_limit:
 		current_speed = current_speed_limit
 
+# Function to remain stopped
 func stop_vehicle():
 	current_speed = 0
 
@@ -154,10 +156,10 @@ func is_intersection_ahead() -> bool:
 
 func handle_intersection():
 	check_upcoming_light() # Update light color
-	var current_stop_distance = calculate_stopping_distance()
+	var current_stop_distance = calculate_stopping_distance() # Update current stopping distance
 	
 	# Check for cars ahead
-	var smallest_distance_to_other = 50 * current_stop_distance
+	var smallest_distance_to_other = 500 * current_stop_distance
 	
 	# Find the closest car ahead
 	for other_vehicle in spawner.vehicleInstances:
@@ -168,17 +170,17 @@ func handle_intersection():
 		if other_vehicle.current_path == self.current_path:
 			var current_distance_to_other = other_vehicle.progress - self.progress - length / 2 - other_vehicle.length / 2
 			
-			if current_distance_to_other < 0: # Don't count cars behind it
+			if current_distance_to_other < length / 4: # Don't count cars behind it or inside it
 				continue
 			elif current_distance_to_other < smallest_distance_to_other:
 				smallest_distance_to_other = current_distance_to_other
 			
 	# Come to a stop when approaching the other vehicle
-	if smallest_distance_to_other <= current_stop_distance + length / 2:
+	if smallest_distance_to_other != 500 * current_stop_distance and smallest_distance_to_other <= current_stop_distance + length:
 		if state != "stopped":
 			state = "decelerating"
 		
-		print("\nCurrent road: " + str(current_path) + "\nCurrent state: " + str(state) + "\nCurrent speed: " + str(current_speed) + "\nCurrent speed limit: " + str(current_speed_limit) + "\nIntersection Ahead: " + str(is_intersection_ahead()) + "\nUpcoming Light Color: " + str(upcoming_light_color) + "\nCalculated Stopping Distance: " + str(calculate_stopping_distance()) + "\nLength of road: " + str(current_path.get_curve().get_baked_length()) + "\nCurrent Progress: " + str(progress))
+		print("\nCar ahead by: " + str(smallest_distance_to_other) + "Current road: " + str(current_path) + "\nCurrent state: " + str(state) + "\nCurrent speed: " + str(current_speed) + "\nCurrent speed limit: " + str(current_speed_limit) + "\nIntersection Ahead: " + str(is_intersection_ahead()) + "\nUpcoming Light Color: " + str(upcoming_light_color) + "\nCalculated Stopping Distance: " + str(calculate_stopping_distance()) + "\nLength of road: " + str(current_path.get_curve().get_baked_length()) + "\nCurrent Progress: " + str(progress))
 		return
 	
 	# Intersection handling
@@ -221,6 +223,7 @@ func handle_intersection():
 				return
 		elif upcoming_light_color == "green":
 			# Accelerate or cruise
+			print("I should be going")
 			if current_speed < current_speed_limit:
 				state = "accelerating"
 			else:
@@ -228,7 +231,7 @@ func handle_intersection():
 				
 			print("\nCurrent road: " + str(current_path) + "\nCurrent state: " + str(state) + "\nCurrent speed: " + str(current_speed) + "\nCurrent speed limit: " + str(current_speed_limit) + "\nIntersection Ahead: " + str(is_intersection_ahead()) + "\nUpcoming Light Color: " + str(upcoming_light_color) + "\nCalculated Stopping Distance: " + str(calculate_stopping_distance()) + "\nLength of road: " + str(current_path.get_curve().get_baked_length()) + "\nCurrent Progress: " + str(progress))
 			return
-	else:
+	else: # Continue along current road
 		# Accelerate or cruise
 		if current_speed < current_speed_limit:
 			state = "accelerating"
