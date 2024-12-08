@@ -180,7 +180,7 @@ func handle_intersection():
 		if state != "stopped":
 			state = "decelerating"
 		
-		print("\nCar ahead by: " + str(smallest_distance_to_other) + "Current road: " + str(current_path) + "\nCurrent state: " + str(state) + "\nCurrent speed: " + str(current_speed) + "\nCurrent speed limit: " + str(current_speed_limit) + "\nIntersection Ahead: " + str(is_intersection_ahead()) + "\nUpcoming Light Color: " + str(upcoming_light_color) + "\nCalculated Stopping Distance: " + str(calculate_stopping_distance()) + "\nLength of road: " + str(current_path.get_curve().get_baked_length()) + "\nCurrent Progress: " + str(progress))
+		#print("\nCar ahead by: " + str(smallest_distance_to_other) + "Current road: " + str(current_path) + "\nCurrent state: " + str(state) + "\nCurrent speed: " + str(current_speed) + "\nCurrent speed limit: " + str(current_speed_limit) + "\nIntersection Ahead: " + str(is_intersection_ahead()) + "\nUpcoming Light Color: " + str(upcoming_light_color) + "\nCalculated Stopping Distance: " + str(calculate_stopping_distance()) + "\nLength of road: " + str(current_path.get_curve().get_baked_length()) + "\nCurrent Progress: " + str(progress))
 		return
 	
 	# Intersection handling
@@ -193,7 +193,7 @@ func handle_intersection():
 			if state != "stopped":
 				state = "decelerating"
 			
-			print("\nCurrent road: " + str(current_path) + "\nCurrent state: " + str(state) + "\nCurrent speed: " + str(current_speed) + "\nCurrent speed limit: " + str(current_speed_limit) + "\nIntersection Ahead: " + str(is_intersection_ahead()) + "\nUpcoming Light Color: " + str(upcoming_light_color) + "\nCalculated Stopping Distance: " + str(calculate_stopping_distance()) + "\nLength of road: " + str(current_path.get_curve().get_baked_length()) + "\nCurrent Progress: " + str(progress))
+			#print("\nCurrent road: " + str(current_path) + "\nCurrent state: " + str(state) + "\nCurrent speed: " + str(current_speed) + "\nCurrent speed limit: " + str(current_speed_limit) + "\nIntersection Ahead: " + str(is_intersection_ahead()) + "\nUpcoming Light Color: " + str(upcoming_light_color) + "\nCalculated Stopping Distance: " + str(calculate_stopping_distance()) + "\nLength of road: " + str(current_path.get_curve().get_baked_length()) + "\nCurrent Progress: " + str(progress))
 			return
 		elif upcoming_light_color == "red" and distance_to_intersection > current_stop_distance + length / 2: # Continue towards the intersection
 			# Accelerate or cruise
@@ -202,7 +202,7 @@ func handle_intersection():
 			else:
 				state = "cruising"
 			
-			print("\nCurrent road: " + str(current_path) + "\nCurrent state: " + str(state) + "\nCurrent speed: " + str(current_speed) + "\nCurrent speed limit: " + str(current_speed_limit) + "\nIntersection Ahead: " + str(is_intersection_ahead()) + "\nUpcoming Light Color: " + str(upcoming_light_color) + "\nCalculated Stopping Distance: " + str(calculate_stopping_distance()) + "\nLength of road: " + str(current_path.get_curve().get_baked_length()) + "\nCurrent Progress: " + str(progress))
+			#print("\nCurrent road: " + str(current_path) + "\nCurrent state: " + str(state) + "\nCurrent speed: " + str(current_speed) + "\nCurrent speed limit: " + str(current_speed_limit) + "\nIntersection Ahead: " + str(is_intersection_ahead()) + "\nUpcoming Light Color: " + str(upcoming_light_color) + "\nCalculated Stopping Distance: " + str(calculate_stopping_distance()) + "\nLength of road: " + str(current_path.get_curve().get_baked_length()) + "\nCurrent Progress: " + str(progress))
 			return
 		elif upcoming_light_color == "yellow":
 			# Stop if possible at the intersection
@@ -210,7 +210,7 @@ func handle_intersection():
 				if state != "stopped":
 					state = "decelerating"
 				
-				print("\nCurrent road: " + str(current_path) + "\nCurrent state: " + str(state) + "\nCurrent speed: " + str(current_speed) + "\nCurrent speed limit: " + str(current_speed_limit) + "\nIntersection Ahead: " + str(is_intersection_ahead()) + "\nUpcoming Light Color: " + str(upcoming_light_color) + "\nCalculated Stopping Distance: " + str(calculate_stopping_distance()) + "\nLength of road: " + str(current_path.get_curve().get_baked_length()) + "\nCurrent Progress: " + str(progress))
+				#print("\nCurrent road: " + str(current_path) + "\nCurrent state: " + str(state) + "\nCurrent speed: " + str(current_speed) + "\nCurrent speed limit: " + str(current_speed_limit) + "\nIntersection Ahead: " + str(is_intersection_ahead()) + "\nUpcoming Light Color: " + str(upcoming_light_color) + "\nCalculated Stopping Distance: " + str(calculate_stopping_distance()) + "\nLength of road: " + str(current_path.get_curve().get_baked_length()) + "\nCurrent Progress: " + str(progress))
 				return
 			else: 
 				# Accelerate or cruise
@@ -219,7 +219,7 @@ func handle_intersection():
 				else:
 					state = "cruising"
 				
-				print("\nCurrent road: " + str(current_path) + "\nCurrent state: " + str(state) + "\nCurrent speed: " + str(current_speed) + "\nCurrent speed limit: " + str(current_speed_limit) + "\nIntersection Ahead: " + str(is_intersection_ahead()) + "\nUpcoming Light Color: " + str(upcoming_light_color) + "\nCalculated Stopping Distance: " + str(calculate_stopping_distance()) + "\nLength of road: " + str(current_path.get_curve().get_baked_length()) + "\nCurrent Progress: " + str(progress))
+				#print("\nCurrent road: " + str(current_path) + "\nCurrent state: " + str(state) + "\nCurrent speed: " + str(current_speed) + "\nCurrent speed limit: " + str(current_speed_limit) + "\nIntersection Ahead: " + str(is_intersection_ahead()) + "\nUpcoming Light Color: " + str(upcoming_light_color) + "\nCalculated Stopping Distance: " + str(calculate_stopping_distance()) + "\nLength of road: " + str(current_path.get_curve().get_baked_length()) + "\nCurrent Progress: " + str(progress))
 				return
 		elif upcoming_light_color == "green":
 			# Accelerate or cruise
@@ -228,7 +228,7 @@ func handle_intersection():
 			else:
 				state = "cruising"
 				
-			print("\nCurrent road: " + str(current_path) + "\nCurrent state: " + str(state) + "\nCurrent speed: " + str(current_speed) + "\nCurrent speed limit: " + str(current_speed_limit) + "\nIntersection Ahead: " + str(is_intersection_ahead()) + "\nUpcoming Light Color: " + str(upcoming_light_color) + "\nCalculated Stopping Distance: " + str(calculate_stopping_distance()) + "\nLength of road: " + str(current_path.get_curve().get_baked_length()) + "\nCurrent Progress: " + str(progress))
+			#print("\nCurrent road: " + str(current_path) + "\nCurrent state: " + str(state) + "\nCurrent speed: " + str(current_speed) + "\nCurrent speed limit: " + str(current_speed_limit) + "\nIntersection Ahead: " + str(is_intersection_ahead()) + "\nUpcoming Light Color: " + str(upcoming_light_color) + "\nCalculated Stopping Distance: " + str(calculate_stopping_distance()) + "\nLength of road: " + str(current_path.get_curve().get_baked_length()) + "\nCurrent Progress: " + str(progress))
 			return
 	else: # Continue along current road
 		# Accelerate or cruise
@@ -237,7 +237,7 @@ func handle_intersection():
 		else:
 			state = "cruising"
 		
-		print("\nCurrent road: " + str(current_path) + "\nCurrent state: " + str(state) + "\nCurrent speed: " + str(current_speed) + "\nCurrent speed limit: " + str(current_speed_limit) + "\nIntersection Ahead: " + str(is_intersection_ahead()) + "\nUpcoming Light Color: " + str(upcoming_light_color) + "\nCalculated Stopping Distance: " + str(calculate_stopping_distance()) + "\nLength of road: " + str(current_path.get_curve().get_baked_length()) + "\nCurrent Progress: " + str(progress))
+		#print("\nCurrent road: " + str(current_path) + "\nCurrent state: " + str(state) + "\nCurrent speed: " + str(current_speed) + "\nCurrent speed limit: " + str(current_speed_limit) + "\nIntersection Ahead: " + str(is_intersection_ahead()) + "\nUpcoming Light Color: " + str(upcoming_light_color) + "\nCalculated Stopping Distance: " + str(calculate_stopping_distance()) + "\nLength of road: " + str(current_path.get_curve().get_baked_length()) + "\nCurrent Progress: " + str(progress))
 		return
 
 func calculate_distance_to_intersection() -> float:
